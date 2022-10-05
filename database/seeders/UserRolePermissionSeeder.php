@@ -46,6 +46,11 @@ class UserRolePermissionSeeder extends Seeder
                 'name' => 'kader',
                 'email' => 'kader@gmail.com',
             ], $default_users));
+            
+            $bidan = User::create(array_merge([
+                'name' => 'bidan',
+                'email' => 'bidan@gmail.com',
+            ], $default_users));
     
             $roleSuperAdmin = Role::create(['name' => 'super admin']);
             $roleAdminDinas = Role::create(['name' => 'admin dinas']);
@@ -68,6 +73,7 @@ class UserRolePermissionSeeder extends Seeder
             $adminDinas->assignRole('admin dinas');
             $adminPuskesmas->assignRole('admin puskesmas');
             $kader->assignRole('kader');
+            $bidan->assignRole('kader');
 
             
             DB::commit();

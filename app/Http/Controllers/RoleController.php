@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DataTables\UserDatatable;
 
 class RoleController extends Controller
 {
@@ -11,10 +12,10 @@ class RoleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(UserDatatable $dataTable)
     {
         $this->authorize('read');
-        return 'ini khusus super admin';
+        return $dataTable->render('users.index');
     }
 
     /**

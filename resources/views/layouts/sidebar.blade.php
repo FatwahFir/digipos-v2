@@ -17,8 +17,8 @@
     </div>
     <div class="sidebar-content">
         <ul>
-            <li class="active">
-                <a href="index.html" class="link">
+            <li class="{{ request()->segment(1) == 'dashboard' ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}" class="link">
                     <i class="ti-home"></i>
                     <span>Dashboard</span>
                 </a>
@@ -69,14 +69,13 @@
                     <li><a href="element-ui.html" class="link"><span>Desa</span></a></li>
                 </ul>
             </li>
-            <li>
+            <li class=" {{ request()->segment(1) == 'users' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-desktop"></i>
                     <span>Akun Pengguna</span>
                 </a>
-                <ul class="sub-menu ">
-                    <li><a href="element-ui.html" class="link"><span>Akun Bidan</span></a></li>
-                    <li><a href="element-ui.html" class="link"><span>Akun Puskesmas</span></a></li>
+                <ul class="sub-menu {{ request()->segment(1) == 'users' ? 'expand' : '' }}">
+                    <li class="{{ request()->segment(1) == 'users' ? 'active' : '' }}"><a href="{{ route('users.index') }}" class="link"><span>Akun</span></a></li>
                 </ul>
             </li>
             <li>
@@ -85,7 +84,7 @@
                     <span>Pasien</span>
                 </a>
                 <ul class="sub-menu ">
-                    <li><a href="element-ui.html" class="link"><span>Data Pasien</span></a></li>
+                    <li><a href="#" class="link"><span>Data Pasien</span></a></li>
                     <li><a href="element-ui.html" class="link"><span>Data Keluarga</span></a></li>
                 </ul>
             </li>
