@@ -27,8 +27,8 @@ class UserDatatable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($user){
                 return '
-                    <button class="btn btn-info btn-sm"><i class="ti-pencil"></i></button>
-                    <button class="btn btn-danger btn-sm"><i class="ti-trash"></i></button>';
+                    <button class="btn btn-info btn-sm action" data-id="'.$user->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
+                    <button class="btn btn-danger btn-sm action" data-id="'.$user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
             })
             ->addColumn('role', function($user){
                 $role = $user->getRoleNames();

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\DataTables\UserDatatable;
+use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
@@ -56,9 +58,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $roles = Role::get();
+        $userRole = $user->getRoleNames()->first();
+        return view('users.user-action', compact('user','roles', 'userRole'));
     }
 
     /**

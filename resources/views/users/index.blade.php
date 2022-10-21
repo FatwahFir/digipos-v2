@@ -22,6 +22,14 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalAction" tabindex="-1" aria-labelledby="largeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            
+        </div>
+    </div>
+
 </div>
 @endsection
 @push('js')
@@ -29,4 +37,22 @@
     <script src="{{ asset('') }}vendor/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('') }}vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     {{ $dataTable->scripts() }}
+
+    <script>
+        const modal = new bootstrap.Modal($('#modalAction'));
+        $('#userdatatable-table').on('click','.action', function(){
+            let data = $(this).data()
+            let id = data.id
+            let jenis = data.jenis
+
+            $.ajax({
+                method: 'get',
+                url: "{{ url('users/') }}/" + id + "/edit",
+                success: function(res){
+                    $('#modalAction').find('.modal-dialog').html(res);
+                    modal.show()
+                }
+            })
+        })
+    </script>
 @endpush
