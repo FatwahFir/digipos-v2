@@ -34,6 +34,7 @@ class UserDatatable extends DataTable
                 $role = $user->getRoleNames();
                 return $role[0];
             })
+            ->addIndexColumn()
             ->setRowId('id');
     }
 
@@ -78,10 +79,10 @@ class UserDatatable extends DataTable
     protected function getColumns(): array
     {
         return [
-            // Column::make('No'),
+            Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
             Column::make('name'),
             Column::make('email'),
-            Column::make('role'),
+            Column::make('role')->searchable(true),
             Column::computed('action')
                     ->exportable(false)
                     ->printable(false)

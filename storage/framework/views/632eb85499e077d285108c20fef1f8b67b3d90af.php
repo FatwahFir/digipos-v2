@@ -59,13 +59,13 @@
                     <li><a href="element-ui.html" class="link"><span>Posyandu</span></a></li>
                 </ul>
             </li>
-            <li>
+            <li class="<?php echo e(request()->segment(1) == 'wilayah' ? 'active open' : ''); ?>">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-desktop"></i>
                     <span>Data Wilayah</span>
                 </a>
-                <ul class="sub-menu ">
-                    <li><a href="element-ui.html" class="link"><span>Kecamatan</span></a></li>
+                <ul class="sub-menu <?php echo e(request()->segment(2) == 'kecamatan' ? 'expand' : ''); ?>">
+                    <li class="<?php echo e(request()->segment(2) == 'kecamatan' ? 'active' : ''); ?>"><a href="<?php echo e(route('kecamatan.index')); ?>" class="link"><span>Kecamatan</span></a></li>
                     <li><a href="element-ui.html" class="link"><span>Desa</span></a></li>
                 </ul>
             </li>
