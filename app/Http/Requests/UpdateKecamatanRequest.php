@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateKecamatanRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdateKecamatanRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_kecamatan' => 'required',
+            'nama_kecamatan' => ['required', Rule::unique('kecamatans')->ignore($this->kecamatan)],
             'kodepos' => 'required'
         ];
     }

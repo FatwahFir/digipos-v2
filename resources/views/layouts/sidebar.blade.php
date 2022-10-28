@@ -51,7 +51,7 @@
             </li>
             <li>
                 <a href="#" class="main-menu has-dropdown">
-                    <i class="ti-desktop"></i>
+                    <i class="ti-wheelchair"></i>
                     <span>Unit Kesehatan</span>
                 </a>
                 <ul class="sub-menu ">
@@ -61,7 +61,7 @@
             </li>
             <li class="{{ request()->segment(1) == 'wilayah' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
-                    <i class="ti-desktop"></i>
+                    <i class="ti-location-arrow"></i>
                     <span>Data Wilayah</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(2) == 'kecamatan' ? 'expand' : '' }}">
@@ -71,7 +71,7 @@
             </li>
             <li class=" {{ request()->segment(1) == 'users' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
-                    <i class="ti-desktop"></i>
+                    <i class="ti-user"></i>
                     <span>Akun Pengguna</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'users' ? 'expand' : '' }}">
@@ -80,7 +80,7 @@
             </li>
             <li>
                 <a href="#" class="main-menu has-dropdown">
-                    <i class="ti-desktop"></i>
+                    <i class="ti-id-badge"></i>
                     <span>Pasien</span>
                 </a>
                 <ul class="sub-menu ">

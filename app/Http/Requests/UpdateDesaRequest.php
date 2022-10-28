@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateDesaRequest extends FormRequest
@@ -24,7 +25,7 @@ class UpdateDesaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama_desa' => 'required'
+            'nama_desa' => ['required', Rule::unique('desas')->ignore($this->desa)]
         ];
     }
 }

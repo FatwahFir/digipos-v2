@@ -52,7 +52,17 @@
                     $('#modalAction').find('.modal-dialog').html(res)
                     modal.show()
                     store()
-                }
+                },
+                error: function(res){
+                        let errors = res.responseJSON?.errors
+                        $(_form).find('.text-danger.text-small').remove()
+                        if(errors){
+                            for(const [key, value] of Object.entries(errors)){
+                                $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
+                                $(`[name='${key}']`).addClass('is-invalid')
+                            }
+                        }
+                    }
             })
         })
 
@@ -139,6 +149,7 @@
                         if(errors){
                             for(const [key, value] of Object.entries(errors)){
                                 $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
+                                $(`[name='${key}']`).addClass('is-invalid')
                             }
                         }
                     }
