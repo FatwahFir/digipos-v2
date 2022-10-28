@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('desas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama_desa');
+            $table->foreignId('id_kecamatan');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -66,7 +66,7 @@
                 </a>
                 <ul class="sub-menu {{ request()->segment(2) == 'kecamatan' ? 'expand' : '' }}">
                     <li class="{{ request()->segment(2) == 'kecamatan' ? 'active' : '' }}"><a href="{{ route('kecamatan.index') }}" class="link"><span>Kecamatan</span></a></li>
-                    <li><a href="element-ui.html" class="link"><span>Desa</span></a></li>
+                    <li class="{{ request()->segment(2) == 'desa' ? 'active' : '' }}"><a href="{{ route('desa.index') }}" class="link"><span>Desa</span></a></li>
                 </ul>
             </li>
             <li class=" {{ request()->segment(1) == 'users' ? 'active open' : '' }}">

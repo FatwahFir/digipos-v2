@@ -66,7 +66,7 @@
                 </a>
                 <ul class="sub-menu <?php echo e(request()->segment(2) == 'kecamatan' ? 'expand' : ''); ?>">
                     <li class="<?php echo e(request()->segment(2) == 'kecamatan' ? 'active' : ''); ?>"><a href="<?php echo e(route('kecamatan.index')); ?>" class="link"><span>Kecamatan</span></a></li>
-                    <li><a href="element-ui.html" class="link"><span>Desa</span></a></li>
+                    <li class="<?php echo e(request()->segment(2) == 'desa' ? 'active' : ''); ?>"><a href="<?php echo e(route('desa.index')); ?>" class="link"><span>Desa</span></a></li>
                 </ul>
             </li>
             <li class=" <?php echo e(request()->segment(1) == 'users' ? 'active open' : ''); ?>">
