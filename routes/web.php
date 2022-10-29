@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DesaController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\KecamatanController;
 
 /*
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function (){
     Route::resource('/users', RoleController::class);
     Route::resource('/wilayah/kecamatan', KecamatanController::class);
     Route::resource('/wilayah/desa', DesaController::class);
+    Route::resource('/pasien/keluarga', KeluargaController::class);
 });
 
 
