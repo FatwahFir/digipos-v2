@@ -49,14 +49,14 @@
             <li>
                 <hr class="mt-4">
             </li>
-            <li>
+            <li class="{{ request()->segment(1) == 'unit-kesehatan' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-wheelchair"></i>
                     <span>Unit Kesehatan</span>
                 </a>
-                <ul class="sub-menu ">
+                <ul class="sub-menu {{ request()->segment(1) == 'unit-kesehatan' ? 'expand' : '' }}">
                     <li><a href="element-ui.html" class="link"><span>Puskesmas</span></a></li>
-                    <li><a href="element-ui.html" class="link"><span>Posyandu</span></a></li>
+                    <li class="{{ request()->segment(2) == 'posyandu' ? 'active' : '' }}"><a href="{{ route('posyandu.index') }}" class="link"><span>Posyandu</span></a></li>
                 </ul>
             </li>
             <li class="{{ request()->segment(1) == 'wilayah' ? 'active open' : '' }}">
@@ -84,7 +84,7 @@
                     <span>Pasien</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'pasien' ? 'expand' : '' }}">
-                    <li><a href="element-ui.html" class="link"><span>Data Pasien</span></a></li>
+                    <li class="{{ request()->segment(2) == 'pasien' ? 'active' : '' }}"><a href="" class="link"><span>Data Pasien</span></a></li>
                     <li class="{{ request()->segment(2) == 'keluarga' ? 'active' : '' }}"><a href="{{ route('keluarga.index') }}" class="link"><span>Data Keluarga</span></a></li>
                 </ul>
             </li>

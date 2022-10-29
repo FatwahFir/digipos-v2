@@ -26,7 +26,7 @@ class UpdateKecamatanRequest extends FormRequest
     {
         return [
             'nama_kecamatan' => ['required', Rule::unique('kecamatans')->ignore($this->kecamatan)],
-            'kodepos' => 'required'
+            'kodepos' => 'required|numeric'
         ];
     }
 }

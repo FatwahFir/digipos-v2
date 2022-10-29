@@ -24,12 +24,12 @@ class StoreKeluargaRequest extends FormRequest
     public function rules()
     {
         return [
-            'no_kk' => 'required',
+            'no_kk' => 'required|numeric',
             'nama_ayah' => 'required',
-            'nik_ayah' => 'required',
+            'nik_ayah' => 'required|numeric',
             'nama_ibu' => 'required',
-            'nik_ibu' => 'required',
-            'no_telp' => 'required',
+            'nik_ibu' => 'required|numeric',
+            'no_telp' => 'required|numeric',
             'id_desa' => 'required',
             'alamat' => 'required',
             'status_ekonomi' => 'required'

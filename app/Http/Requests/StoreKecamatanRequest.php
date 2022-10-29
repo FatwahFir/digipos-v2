@@ -26,7 +26,7 @@ class StoreKecamatanRequest extends FormRequest
     {
         return [
             'nama_kecamatan' => ['required', Rule::unique('kecamatans')],
-            'kodepos' => 'required',
+            'kodepos' => 'required|numeric',
         ];
     }
 }

@@ -66,7 +66,6 @@ class KecamatanController extends Controller
      */
     public function edit(Kecamatan $kecamatan)
     {
-    
         return view('data_wilayah.kecamatan.kecamatan-action', compact('kecamatan'));
     }
 

@@ -14,6 +14,7 @@
                 <label for="nama_desa" class="form-label">Nama Desa</label>
                 <input type="text" placeholder="Nama Desa.." value="{{ $desa->nama_desa }}"  name="nama_desa" class="form-control" id="name">
             </div>
+            <label>Kecamatan</label>
             <select class="form-select mb-3" aria-label="Default select example" name="id_kecamatan">
                 <option value="">--</option>
                 @foreach ($kecamatan as $data)
