@@ -1,3 +1,6 @@
+<?php $__env->startPush('css'); ?>
+    
+<?php $__env->stopPush(); ?>
 <header class="header-navbar fixed">
     <div class="toggle-mobile action-toggle"><i class="fas fa-bars"></i></div>
     <div class="header-wrapper">
@@ -158,10 +161,10 @@
                         </a>
                         <a href="#">
                             <div class="description">
-                                <i class="ti-power-off"></i> Logout
+                                <i class="ti-power-off"></i> <span class="logout">Logout</span>
                                     <!-- Authentication -->
                                     
-                                    </form>
+                                    
                             </div>
                         </a>
                     </li>
@@ -170,4 +173,24 @@
 
         </div>
     </div>
-</header><?php /**PATH D:\Developement\DigiPosyandu\resources\views/layouts/header.blade.php ENDPATH**/ ?>
+</header>
+<?php $__env->startPush('js'); ?>
+<script src="<?php echo e(asset('')); ?>vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $('.logout').on('click', function(){
+            // Swal.fire({
+            //     title: 'Anda Yakin?',
+            //     text: 'Klik Ok untuk melanjutkan',
+            //     icon: 'question',
+            //     confirmButtonText: 'Ok'
+            // })
+            $.ajax({
+                method: 'post',
+                url: '<?php echo e(route("logout")); ?>',
+                headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            })
+        })
+    </script>
+<?php $__env->stopPush(); ?><?php /**PATH D:\Developement\DigiPosyandu\resources\views/layouts/header.blade.php ENDPATH**/ ?>

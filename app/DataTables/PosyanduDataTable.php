@@ -76,9 +76,9 @@ class PosyanduDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No'),
-            Column::make('nama_posyandu'),
-            Column::make('desa'),
+            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No')->addClass('text-center'),
+            Column::make('nama_posyandu')->addClass('text-center'),
+            Column::make('desa')->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

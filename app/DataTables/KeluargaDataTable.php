@@ -76,12 +76,12 @@ class KeluargaDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
-            Column::make('no_kk')->title('Nomor KK'),
-            Column::make('nama_ayah'),
-            Column::make('nama_ibu'),
-            Column::make('desa'),
-            Column::make('alamat')->orderable(false),
+            Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false)->addClass('text-center'),
+            Column::make('no_kk')->title('Nomor KK')->addClass('text-center'),
+            Column::make('nama_ayah')->addClass('text-center'),
+            Column::make('nama_ibu')->addClass('text-center'),
+            Column::make('desa')->addClass('text-center'),
+            Column::make('alamat')->orderable(false)->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

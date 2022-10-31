@@ -17,7 +17,7 @@
     </div>
     <div class="sidebar-content">
         <ul>
-            <li class="{{ request()->segment(1) == 'dashboard' ? 'active' : '' }}">
+            <li class="{{ request()->segment(1) == '' || request()->segment(1) ==  'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}" class="link">
                     <i class="ti-home"></i>
                     <span>Dashboard</span>
@@ -84,7 +84,7 @@
                     <span>Pasien</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'pasien' ? 'expand' : '' }}">
-                    <li class="{{ request()->segment(2) == 'pasien' ? 'active' : '' }}"><a href="" class="link"><span>Data Pasien</span></a></li>
+                    <li class="{{ request()->segment(2) == 'data-pasien' ? 'active' : '' }}"><a href="{{ route('data-pasien.index') }}" class="link"><span>Data Pasien</span></a></li>
                     <li class="{{ request()->segment(2) == 'keluarga' ? 'active' : '' }}"><a href="{{ route('keluarga.index') }}" class="link"><span>Data Keluarga</span></a></li>
                 </ul>
             </li>

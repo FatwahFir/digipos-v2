@@ -1,3 +1,6 @@
+@push('css')
+    
+@endpush
 <header class="header-navbar fixed">
     <div class="toggle-mobile action-toggle"><i class="fas fa-bars"></i></div>
     <div class="header-wrapper">
@@ -158,7 +161,7 @@
                         </a>
                         <a href="#">
                             <div class="description">
-                                <i class="ti-power-off"></i> Logout
+                                <i class="ti-power-off"></i> <span class="logout">Logout</span>
                                     <!-- Authentication -->
                                     {{-- <form method="POST" action="{{ route('logout') }}">
                                         @csrf
@@ -168,7 +171,7 @@
                                                             this.closest('form').submit();">
                                             {{ __('Log Out') }}
                                         </x-dropdown-link> --}}
-                                    </form>
+                                    {{-- </form> --}}
                             </div>
                         </a>
                     </li>
@@ -178,3 +181,23 @@
         </div>
     </div>
 </header>
+@push('js')
+<script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        $('.logout').on('click', function(){
+            // Swal.fire({
+            //     title: 'Anda Yakin?',
+            //     text: 'Klik Ok untuk melanjutkan',
+            //     icon: 'question',
+            //     confirmButtonText: 'Ok'
+            // })
+            $.ajax({
+                method: 'post',
+                url: '{{ route("logout") }}',
+                headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            })
+        })
+    </script>
+@endpush

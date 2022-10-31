@@ -37,7 +37,7 @@
     <script src="{{ asset('') }}vendor/jquery/dist/jquery.min.js"></script>
     <script src="{{ asset('') }}vendor/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('') }}vendor/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
     {{ $dataTable->scripts() }}
     <script>
 

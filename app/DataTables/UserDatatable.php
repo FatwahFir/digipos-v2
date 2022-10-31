@@ -79,10 +79,10 @@ class UserDatatable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
-            Column::make('name'),
-            Column::make('email'),
-            Column::make('role')->searchable(true),
+            Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false)->addClass('text-center'),
+            Column::make('name')->addClass('text-center'),
+            Column::make('email')->addClass('text-center'),
+            Column::make('role')->searchable(true)->addClass('text-center'),
             Column::computed('action')
                     ->exportable(false)
                     ->printable(false)

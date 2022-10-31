@@ -73,9 +73,9 @@ class KecamatanDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->searchable(false)->orederable(false)->title('No'),
-            Column::make('nama_kecamatan')->title('Nama Kecamatan'),
-            Column::make('kodepos')->title('Kode Pos'),
+            Column::make('DT_RowIndex')->searchable(false)->orederable(false)->title('No')->addClass('text-center'),
+            Column::make('nama_kecamatan')->title('Nama Kecamatan')->addClass('text-center'),
+            Column::make('kodepos')->title('Kode Pos')->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)

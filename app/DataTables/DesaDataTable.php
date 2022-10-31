@@ -76,9 +76,9 @@ class DesaDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No'),
-            Column::make('nama_desa'),
-            Column::make('kecamatan')->searchable(true),
+            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No')->addClass('text-center'),
+            Column::make('nama_desa')->addClass('text-center'),
+            Column::make('kecamatan')->searchable(true)->addClass('text-center'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
