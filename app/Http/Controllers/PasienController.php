@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pasien;
+use App\Models\Keluarga;
 use App\Models\Posyandu;
 use Illuminate\Http\Request;
 use App\DataTables\PasienDataTable;
@@ -31,7 +32,8 @@ class PasienController extends Controller
     {
         $posyandu = Posyandu::get();
         $pasien = new Pasien();
-        return view('pasien.data_pasien.pasien-action', compact('posyandu', 'pasien'));
+        $keluarga = Keluarga::get();
+        return view('pasien.data_pasien.pasien-action', compact('posyandu', 'pasien', 'keluarga'));
     }
 
     /**
@@ -71,7 +73,8 @@ class PasienController extends Controller
     {
         $posyandu = Posyandu::get();
         $pasien = Pasien::findOrFail($id);
-        return view('pasien.data_pasien.pasien-action', compact('pasien', 'posyandu'));
+        $keluarga = Keluarga::get();
+        return view('pasien.data_pasien.pasien-action', compact('pasien', 'posyandu', 'keluarga'));
     }
 
     /**

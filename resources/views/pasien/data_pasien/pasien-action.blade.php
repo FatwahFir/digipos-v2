@@ -5,7 +5,7 @@
             @method('put')
         @endif
         <div class="modal-header">
-            <h5 class="modal-title" id="largeModalLabel">Tambah Keluarga</h5>
+            <h5 class="modal-title" id="largeModalLabel">{{ $pasien->id ? 'Ubah':'Tambah' }} Posyandu</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"
                 aria-label="Close"></button>
         </div>
@@ -18,21 +18,30 @@
                 <label for="nik" class="form-label">NIK</label>
                 <input type="text" placeholder="NIK.." value="{{ $pasien->nik }}"  name="nik" class="form-control" id="nik">
             </div>
-            <div class="mb-3">
+            <div class="col-md-12 mb-3">
+                <label>Keluaga Dari</label>
+                <select class="form-select ">
+                    <option>--</option>
+                    @foreach($keluarga as $data)
+                    <option value="{{ $data->no_kk }}"{{ $data->no_kk == $pasien->no_kk ? 'selected' : '' }}>{{ $data->nama_ayah }}</option>
+                    @endforeach
+                </select>
+            </div>
+            {{-- <div class="mb-3">
                 <label for="no_kk" class="form-label">No KK</label>
                 <input type="text" placeholder="No KK.." value="{{ $pasien->no_kk }}"  name="no_kk" class="form-control" id="no_kk">
-            </div>
+            </div> --}}
             <div class="mb-3">
                 <label for="anak_ke" class="form-label">Anak Ke-</label>
                 <input type="text" placeholder="Anak ke-" value="{{ $pasien->anak_ke }}"  name="anak_ke" class="form-control" id="anak_ke">
             </div>
             <div class="mb-3">
-                <label for="bb_lahir" class="form-label">Bb Lahir</label>
-                <input type="text" placeholder="Bb lahir.." value="{{ $pasien->bb_lahir }}"  name="bb_lahir" class="form-control" id="bb_lahir">
+                <label for="bb_lahir" class="form-label">Berat Badan</label>
+                <input type="text" placeholder="Berat badan lahir.." value="{{ $pasien->bb_lahir }}"  name="bb_lahir" class="form-control" id="bb_lahir">
             </div>
             <div class="mb-3">
-                <label for="pb_lahir" class="form-label">Pb Lahir</label>
-                <input type="text" placeholder="Pb lahir.." value="{{ $pasien->pb_lahir }}"  name="pb_lahir" class="form-control" id="pb_lahir">
+                <label for="pb_lahir" class="form-label">Tinggi Badan</label>
+                <input type="text" placeholder="Tinggi badan lahir.." value="{{ $pasien->pb_lahir }}"  name="pb_lahir" class="form-control" id="pb_lahir">
             </div>
             <div class="mb-3">
                 <label for="kia" class="form-label">KIA</label>

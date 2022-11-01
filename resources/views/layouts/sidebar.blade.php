@@ -36,14 +36,14 @@
                     <li><a href="element-ui.html" class="link"><span>Riwayat</span></a></li>
                 </ul>
             </li>
-            <li>
+            <li class="{{ request()->segment(1) == 'imunisasi' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-desktop"></i>
                     <span>Imunisasi</span>
                 </a>
-                <ul class="sub-menu ">
+                <ul class="sub-menu {{ request()->segment(1) == 'imunisasi' ? 'expand' : '' }}">
                     <li><a href="element-ui.html" class="link"><span>Data Imunisasi</span></a></li>
-                    <li><a href="element-ui.html" class="link"><span>Jenis Imunisasi</span></a></li>
+                    <li class="{{ request()->segment(2) == 'jenis-imunisasi' ? 'active' : '' }}"><a href="{{ route('jenis-imunisasi.index') }}" class="link"><span>Jenis Imunisasi</span></a></li>
                 </ul>
             </li>
             <li>
@@ -55,7 +55,7 @@
                     <span>Unit Kesehatan</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'unit-kesehatan' ? 'expand' : '' }}">
-                    <li><a href="element-ui.html" class="link"><span>Puskesmas</span></a></li>
+                    <li class="{{ request()->segment(2) == 'puskesmas' ? 'active' : '' }}"><a href="{{ route('puskesmas.index') }}" class="link"><span>Puskesmas</span></a></li>
                     <li class="{{ request()->segment(2) == 'posyandu' ? 'active' : '' }}"><a href="{{ route('posyandu.index') }}" class="link"><span>Posyandu</span></a></li>
                 </ul>
             </li>
@@ -80,11 +80,11 @@
             </li>
             <li class="{{ request()->segment(1) == 'pasien' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
-                    <i class="ti-id-badge"></i>
-                    <span>Pasien</span>
+                    <i class="ti-basketball"></i>
+                    <span>Anak</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'pasien' ? 'expand' : '' }}">
-                    <li class="{{ request()->segment(2) == 'data-pasien' ? 'active' : '' }}"><a href="{{ route('data-pasien.index') }}" class="link"><span>Data Pasien</span></a></li>
+                    <li class="{{ request()->segment(2) == 'data-pasien' ? 'active' : '' }}"><a href="{{ route('data-pasien.index') }}" class="link"><span>Data Anak</span></a></li>
                     <li class="{{ request()->segment(2) == 'keluarga' ? 'active' : '' }}"><a href="{{ route('keluarga.index') }}" class="link"><span>Data Keluarga</span></a></li>
                 </ul>
             </li>

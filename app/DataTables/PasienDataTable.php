@@ -25,6 +25,8 @@ class PasienDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($pasien){
                 return '
+                    <button class="btn btn-outline-success mb-1 btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-plus"></i> Check UP</button>
+                    <button class="btn btn-outline-primary mb-1 btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-book"></i> Riwayat</button>
                     <button class="btn btn-info btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
                     <button class="btn btn-danger btn-sm action" data-id="'.$pasien->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
             })
@@ -79,18 +81,18 @@ class PasienDataTable extends DataTable
     protected function getColumns(): array
     {
         return [
-            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No')->addClass('text-center'),
-            Column::make('nama_anak')->addClass('text-center'),
-            Column::make('jk')->addClass('text-center'),
-            Column::make('tgl_lahir')->addClass('text-center'),
-            Column::make('no_kk')->addClass('text-center'),
-            Column::make('kia')->addClass('text-center'),
-            Column::make('imd')->addClass('text-center'),
-            Column::make('posyandu')->addClass('text-center'),
+            Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No')->addClass('text-center align-middle'),
+            Column::make('nama_anak')->addClass('text-center align-middle'),
+            Column::make('jk')->addClass('text-center align-middle')->orderable(false),
+            Column::make('tgl_lahir')->addClass('text-center align-middle')->orderable(false),
+            Column::make('no_kk')->addClass('text-center align-middle')->orderable(false),
+            Column::make('kia')->addClass('text-center align-middle')->orderable(false),
+            Column::make('imd')->addClass('text-center align-middle')->orderable(false),
+            Column::make('posyandu')->addClass('text-center align-middle')->orderable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
-                ->width(60)
+                ->width(100)
                 ->addClass('text-center'),
         ];
     }

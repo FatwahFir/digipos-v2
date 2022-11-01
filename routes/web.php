@@ -7,6 +7,8 @@ use App\Http\Controllers\PasienController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PosyanduController;
 use App\Http\Controllers\KecamatanController;
+use App\Http\Controllers\PuskesmasController;
+use App\Http\Controllers\JenisImunisasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,8 @@ Route::middleware('auth')->group(function (){
     Route::resource('/pasien/keluarga', KeluargaController::class);
     Route::resource('/pasien/data-pasien', PasienController::class);
     Route::resource('/unit-kesehatan/posyandu', PosyanduController::class);
+    Route::resource('/unit-kesehatan/puskesmas', PuskesmasController::class);
+    Route::resource('/imunisasi/jenis-imunisasi', JenisImunisasiController::class);
 });
 
 
