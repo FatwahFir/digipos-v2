@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\DataTables\\DesaDataTable' => $baseDir . '/app/DataTables/DesaDataTable.php',
+    'App\\DataTables\\JenisImunisasiDataTable' => $baseDir . '/app/DataTables/JenisImunisasiDataTable.php',
     'App\\DataTables\\KecamatanDataTable' => $baseDir . '/app/DataTables/KecamatanDataTable.php',
     'App\\DataTables\\KeluargaDataTable' => $baseDir . '/app/DataTables/KeluargaDataTable.php',
     'App\\DataTables\\PasienDataTable' => $baseDir . '/app/DataTables/PasienDataTable.php',

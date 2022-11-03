@@ -542,6 +542,7 @@ class ComposerStaticInitd39d5264894f9c4e335a6c4c83bc41f6
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\DataTables\\DesaDataTable' => __DIR__ . '/../..' . '/app/DataTables/DesaDataTable.php',
+        'App\\DataTables\\JenisImunisasiDataTable' => __DIR__ . '/../..' . '/app/DataTables/JenisImunisasiDataTable.php',
         'App\\DataTables\\KecamatanDataTable' => __DIR__ . '/../..' . '/app/DataTables/KecamatanDataTable.php',
         'App\\DataTables\\KeluargaDataTable' => __DIR__ . '/../..' . '/app/DataTables/KeluargaDataTable.php',
         'App\\DataTables\\PasienDataTable' => __DIR__ . '/../..' . '/app/DataTables/PasienDataTable.php',
