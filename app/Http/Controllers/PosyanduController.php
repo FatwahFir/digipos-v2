@@ -17,7 +17,7 @@ class PosyanduController extends Controller
      */
     public function index(PosyanduDataTable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('unit_kesehatan.posyandu.index');
     }
 

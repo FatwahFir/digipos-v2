@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\DataTables\UserDatatable;
 use Spatie\Permission\Models\Role;
+use App\Http\Requests\StoreAdminRequest;
+use App\Http\Requests\UpdateAdminRequest;
 
 class RoleController extends Controller
 {
@@ -16,8 +18,8 @@ class RoleController extends Controller
      */
     public function index(UserDatatable $dataTable)
     {
-        $this->authorize('read');
-        return $dataTable->render('users.index');
+        // $this->authorize('read');
+        return $dataTable->render('users.admin.index');
     }
 
     /**
@@ -26,8 +28,9 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $user = new User();
+        return view('users.admin.user-action', compact('user'));
     }
 
     /**
@@ -36,9 +39,17 @@ class RoleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAdminRequest $request)
     {
-        //
+        // dd($request);
+        $validatedData = $request;
+        $validatedData['password'] = bcrypt($validatedData['password']);
+        User::create($validatedData->all())->assignRole('super admin');
+
+        return response()->json([
+            'status' => 'Sukses',
+            'message' => 'Berhasil menambahkan akun admin'
+        ]);
     }
 
     /**
@@ -58,11 +69,10 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        $roles = Role::get();
-        $userRole = $user->getRoleNames()->first();
-        return view('users.user-action', compact('user','roles', 'userRole'));
+        $user = User::findOrFail($id);
+        return view('users.admin.user-action', compact('user'));
     }
 
     /**
@@ -74,7 +84,24 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $rules = [
+            'name' => 'required|max:255',
+            'password' => 'required|min:6|max:255'
+        ];
+        if($request->username != $user->username){
+            $rules['username'] = 'required|unique:users|min:6';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        User::where('id', $id)->update($validatedData);
+
+        return response()->json([
+            'status' => 'Sukses',
+            'message' => 'Berhasil mengubah data'
+        ]);
+
     }
 
     /**
@@ -85,6 +112,11 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+
+        return response()->json([
+            'status' => 'Sukses',
+            'message' => 'Berhasil mengubah data'
+        ]);
     }
 }

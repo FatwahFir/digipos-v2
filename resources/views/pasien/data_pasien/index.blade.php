@@ -16,7 +16,7 @@
                         <h4>Data Pasien</h4>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="mb-3 btn btn-primary btn-add">Tambah Pasien</button>
+                        <button type="button" class="mb-3 btn btn-primary btn-add"><span class="ti-plus"></span> Tambah Pasien</button>
                         {{ $dataTable->table() }}
                     </div>
                 </div>
@@ -66,7 +66,35 @@
             })
         })
 
-        //editKecamatan
+        //Add gizi
+        $('#pasien-table').on('click', '.action-checkup', function(){
+            let data = $(this).data()
+            let id = data.id
+            let jenis = data.jenis
+
+            $.ajax({
+                method: 'get',
+                url: `{{ url('gizi/data-gizi/')}}/${id}/create`,
+                success: function(res){
+                    $('#modalAction').find('.modal-dialog').html(res)
+                    modal.show()
+                    store()
+                },
+                error: function(res){
+                        let errors = res.responseJSON?.errors
+                        $(_form).find('.text-danger.text-small').remove()
+                        if(errors){
+                            for(const [key, value] of Object.entries(errors)){
+                                $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
+                                $(`[name='${key}']`).addClass('is-invalid')
+                            }
+                        }
+                    }
+            })
+            // console.log('masuk');
+        })
+
+        //editPasiens
         $('#pasien-table').on('click','.action', function(){
             let data = $(this).data()
             let id = data.id

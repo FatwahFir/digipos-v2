@@ -140,7 +140,7 @@
                 <a href="#" class="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="label">
                         <span></span>
-                        <div><?php echo e(auth()->user()->name); ?></div>
+                        
                     </div>
                     <img class="img-user" src="../assets/images/avatar1.png" alt="user"srcset="">
                 </a>
@@ -177,20 +177,20 @@
 <?php $__env->startPush('js'); ?>
 <script src="<?php echo e(asset('')); ?>vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
-        $('.logout').on('click', function(){
-            // Swal.fire({
-            //     title: 'Anda Yakin?',
-            //     text: 'Klik Ok untuk melanjutkan',
-            //     icon: 'question',
-            //     confirmButtonText: 'Ok'
-            // })
-            $.ajax({
-                method: 'post',
-                url: '<?php echo e(route("logout")); ?>',
-                headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            })
-        })
-    </script>
+    //     $('.logout').on('click', function(){
+    //         // Swal.fire({
+    //         //     title: 'Anda Yakin?',
+    //         //     text: 'Klik Ok untuk melanjutkan',
+    //         //     icon: 'question',
+    //         //     confirmButtonText: 'Ok'
+    //         // })
+    //         $.ajax({
+    //             method: 'post',
+    //             url: '<?php echo e(route("logout")); ?>',
+    //             headers: {
+    //                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             },
+    //         })
+    //     })
+    // </script>
 <?php $__env->stopPush(); ?><?php /**PATH D:\Developement\DigiPosyandu\resources\views/layouts/header.blade.php ENDPATH**/ ?>

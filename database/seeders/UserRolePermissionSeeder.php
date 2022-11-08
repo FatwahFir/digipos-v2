@@ -19,7 +19,7 @@ class UserRolePermissionSeeder extends Seeder
      */
     public function run()
     {
-        $default_users = ['email_verified_at' => now(),
+        $default_users = [
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),];
 
@@ -29,33 +29,29 @@ class UserRolePermissionSeeder extends Seeder
 
             $superAdmin = User::create(array_merge([
                 'name' => 'superAdmin',
-                'email' => 'superAdmin@gmail.com',
-            ], $default_users));
-    
-            $adminDinas = User::create(array_merge([
-                'name' => 'adminDinas',
-                'email' => 'adminDinas@gmail.com',
+                'username' => 'superAdmin',
             ], $default_users));
     
             $adminPuskesmas = User::create(array_merge([
                 'name' => 'adminPuskesmas',
-                'email' => 'adminPuskesmas@gmail.com',
+                'username' => 'adminPuskesmas@gmail.com',
             ], $default_users));
     
             $kader = User::create(array_merge([
                 'name' => 'kader',
-                'email' => 'kader@gmail.com',
+                'username' => 'kader@gmail.com',
             ], $default_users));
             
             $bidan = User::create(array_merge([
                 'name' => 'bidan',
-                'email' => 'bidan@gmail.com',
+                'username' => 'bidan@gmail.com',
             ], $default_users));
     
             $roleSuperAdmin = Role::create(['name' => 'super admin']);
-            $roleAdminDinas = Role::create(['name' => 'admin dinas']);
+            // $roleAdminDinas = Role::create(['name' => 'admin dinas']);
             $roleAdminPuskesmas = Role::create(['name' => 'admin puskesmas']);
             $roleKader = Role::create(['name' => 'kader']);
+            $roleBidan = Role::create(['name' => 'bidan']);
     
             $permission = Permission::create(['name' => 'read']);
             $permission = Permission::create(['name' => 'create']);
@@ -70,10 +66,10 @@ class UserRolePermissionSeeder extends Seeder
             ]);
             
             $superAdmin->assignRole('super admin');
-            $adminDinas->assignRole('admin dinas');
+            // $adminDinas->assignRole('admin dinas');
             $adminPuskesmas->assignRole('admin puskesmas');
             $kader->assignRole('kader');
-            $bidan->assignRole('kader');
+            $bidan->assignRole('bidan');
 
             
             DB::commit();

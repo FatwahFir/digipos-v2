@@ -18,7 +18,7 @@ class PuskesmasController extends Controller
      */
     public function index(PuskesmasDataTable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('unit_kesehatan.puskesmas.index');   
     }
 

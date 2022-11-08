@@ -17,7 +17,7 @@ class JenisImunisasiController extends Controller
      */
     public function index(JenisImunisasiDataTable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('imunisasi.jenis_imunisasi.index');
     }
 

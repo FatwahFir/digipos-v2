@@ -19,7 +19,7 @@ class PasienController extends Controller
      */
     public function index(PasienDataTable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('pasien.data_pasien.index');
     }
 

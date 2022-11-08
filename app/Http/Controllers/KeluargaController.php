@@ -17,7 +17,7 @@ class KeluargaController extends Controller
      */
     public function index(KeluargaDataTable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('pasien.data_keluarga.index');
     }
 

@@ -26,13 +26,13 @@
             <li>
                 <hr class="mt-4">
             </li>
-            <li>
+            <li class="<?php echo e(request()->segment(1) == 'gizi' ? 'active open' : ''); ?>">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-desktop"></i>
                     <span>Gizi</span>
                 </a>
-                <ul class="sub-menu ">
-                    <li><a href="element-ui.html" class="link"><span>Data Pemeriksaan Gizi</span></a></li>
+                <ul class="sub-menu <?php echo e(request()->segment(1) == 'gizi' ? 'expand' : ''); ?>">
+                    <li class="<?php echo e(request()->segment(2) == 'data-gizi' ? 'active' : ''); ?>"><a href="<?php echo e(route('data-gizi.index')); ?>" class="link"><span>Data Pemeriksaan Gizi</span></a></li>
                     <li><a href="element-ui.html" class="link"><span>Riwayat</span></a></li>
                 </ul>
             </li>
@@ -75,7 +75,10 @@
                     <span>Akun Pengguna</span>
                 </a>
                 <ul class="sub-menu <?php echo e(request()->segment(1) == 'users' ? 'expand' : ''); ?>">
-                    <li class="<?php echo e(request()->segment(1) == 'users' ? 'active' : ''); ?>"><a href="<?php echo e(route('users.index')); ?>" class="link"><span>Akun</span></a></li>
+                    <li class="<?php echo e(request()->segment(2) == 'admin' ? 'active' : ''); ?>"><a href="<?php echo e(route('admin.index')); ?>" class="link"><span>Admin</span></a></li>
+                    <li class="<?php echo e(request()->segment(2) == 'admin-puskesmas' ? 'active' : ''); ?>"><a href="<?php echo e(route('admin-puskesmas.index')); ?>" class="link"><span>Admin Puskesmas</span></a></li>
+                    <li class="<?php echo e(request()->segment(2) == 'bidan' ? 'active' : ''); ?>"><a href="<?php echo e(route('bidan.index')); ?>" class="link"><span>Bidan</span></a></li>
+                    <li class="<?php echo e(request()->segment(2) == 'kader' ? 'active' : ''); ?>"><a href="<?php echo e(route('kader.index')); ?>" class="link"><span>Kader</span></a></li>
                 </ul>
             </li>
             <li class="<?php echo e(request()->segment(1) == 'pasien' ? 'active open' : ''); ?>">

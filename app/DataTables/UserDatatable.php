@@ -31,8 +31,7 @@ class UserDatatable extends DataTable
                     <button class="btn btn-danger btn-sm action" data-id="'.$user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
             })
             ->addColumn('role', function($user){
-                $role = $user->getRoleNames();
-                return $role[0];
+                return $user->getRoleNames()->first();
             })
             ->addIndexColumn()
             ->setRowId('id');
@@ -46,7 +45,7 @@ class UserDatatable extends DataTable
      */
     public function query(User $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->role('super admin');
     }
 
     /**
@@ -80,9 +79,9 @@ class UserDatatable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false)->addClass('text-center'),
-            Column::make('name')->addClass('text-center'),
-            Column::make('email')->addClass('text-center'),
-            Column::make('role')->searchable(true)->addClass('text-center'),
+            Column::make('name')->addClass('text-center')->orderable(false),
+            Column::make('username')->addClass('text-center')->orderable(false),
+            Column::make('role')->searchable(true)->addClass('text-center')->orderable(false),
             Column::computed('action')
                     ->exportable(false)
                     ->printable(false)

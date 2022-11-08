@@ -25,19 +25,27 @@ class PasienDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($pasien){
                 return '
-                    <button class="btn btn-outline-success mb-1 btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-plus"></i> Check UP</button>
-                    <button class="btn btn-outline-primary mb-1 btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-book"></i> Riwayat</button>
+                <button class="btn btn-outline-primary mb-1 btn-sm action-riwayat" data-id="'.$pasien->id.'"><i class="ti-book"></i> Riwayat</button>
                     <button class="btn btn-info btn-sm action" data-id="'.$pasien->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
                     <button class="btn btn-danger btn-sm action" data-id="'.$pasien->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
+            })
+            ->addColumn('checkup', function ($pasien){
+                return '
+                    <button class="btn btn-outline-secondary mb-1 btn-sm action-checkup" data-id="'.$pasien->id.'"><i class="ti-plus"></i> Check UP</button>';
+            })
+            ->addColumn('imunisasi', function ($pasien){
+                return '
+                    <button class="btn btn-outline-warning mb-1 btn-sm action-checkup" data-id="'.$pasien->id.'"><i class="ti-plus"></i> Imunisasi</button>';
             })
             ->addColumn('no_kk', function ($pasien){
                 return $pasien->keluarga->no_kk;
             })
             ->addColumn('posyandu', function ($pasien){
-                return $pasien->posyandu->nama_posyandu;
+                return '<span class="badge bg-success">'.$pasien->posyandu->nama_posyandu.'</span>';
             })
             ->addIndexColumn()
-            ->setRowId('id');
+            ->setRowId('id')
+            ->rawColumns(['checkup','action', 'imunisasi', 'posyandu']);
     }
 
     /**
@@ -62,15 +70,15 @@ class PasienDataTable extends DataTable
                     ->setTableId('pasien-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    // ->dom('Bfrtip')
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('create'),
+                        Button::make('export'),
+                        Button::make('print'),
+                        Button::make('reset'),
+                        Button::make('reload')
+                    );
     }
 
     /**
@@ -86,14 +94,14 @@ class PasienDataTable extends DataTable
             Column::make('jk')->addClass('text-center align-middle')->orderable(false),
             Column::make('tgl_lahir')->addClass('text-center align-middle')->orderable(false),
             Column::make('no_kk')->addClass('text-center align-middle')->orderable(false),
-            Column::make('kia')->addClass('text-center align-middle')->orderable(false),
-            Column::make('imd')->addClass('text-center align-middle')->orderable(false),
             Column::make('posyandu')->addClass('text-center align-middle')->orderable(false),
+            Column::make('checkup')->addClass('text-center align-middle')->orderable(false)->width(90),
+            Column::make('imunisasi')->addClass('text-center align-middle')->orderable(false)->width(90),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
                 ->width(100)
-                ->addClass('text-center'),
+                ->addClass('text-center align-middle')
         ];
     }
 

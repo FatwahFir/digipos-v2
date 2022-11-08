@@ -140,7 +140,7 @@
                 <a href="#" class="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="label">
                         <span></span>
-                        <div>{{ auth()->user()->name }}</div>
+                        {{-- <div>{{ auth()->user()->name }}</div> --}}
                     </div>
                     <img class="img-user" src="../assets/images/avatar1.png" alt="user"srcset="">
                 </a>
@@ -184,20 +184,20 @@
 @push('js')
 <script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script>
-        $('.logout').on('click', function(){
-            // Swal.fire({
-            //     title: 'Anda Yakin?',
-            //     text: 'Klik Ok untuk melanjutkan',
-            //     icon: 'question',
-            //     confirmButtonText: 'Ok'
-            // })
-            $.ajax({
-                method: 'post',
-                url: '{{ route("logout") }}',
-                headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-            })
-        })
-    </script>
+    //     $('.logout').on('click', function(){
+    //         // Swal.fire({
+    //         //     title: 'Anda Yakin?',
+    //         //     text: 'Klik Ok untuk melanjutkan',
+    //         //     icon: 'question',
+    //         //     confirmButtonText: 'Ok'
+    //         // })
+    //         $.ajax({
+    //             method: 'post',
+    //             url: '{{ route("logout") }}',
+    //             headers: {
+    //                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             },
+    //         })
+    //     })
+    // </script>
 @endpush

@@ -16,7 +16,7 @@ class KecamatanController extends Controller
      */
     public function index(KecamatanDatatable $dataTable)
     {
-        $this->authorize('read');
+        // $this->authorize('read');
         return $dataTable->render('data_wilayah.kecamatan.index');
         
     }

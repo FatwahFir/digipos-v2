@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-12 mb-3">
                 <label>Keluaga Dari</label>
-                <select class="form-select ">
+                <select class="form-select " name="no_kk">
                     <option>--</option>
                     @foreach($keluarga as $data)
                     <option value="{{ $data->no_kk }}"{{ $data->no_kk == $pasien->no_kk ? 'selected' : '' }}>{{ $data->nama_ayah }}</option>
