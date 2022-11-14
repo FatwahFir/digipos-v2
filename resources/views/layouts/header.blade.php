@@ -140,7 +140,7 @@
                 <a href="#" class="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="label">
                         <span></span>
-                        {{-- <div>{{ auth()->user()->name }}</div> --}}
+                        <div>{{ auth()->user()->name }}</div>
                     </div>
                     <img class="img-user" src="../assets/images/avatar1.png" alt="user"srcset="">
                 </a>

@@ -15,7 +15,7 @@
                 <input type="text" placeholder="Nama Desa.." value="{{ $desa->nama_desa }}"  name="nama_desa" class="form-control" id="name">
             </div>
             <label>Kecamatan</label>
-            <select class="form-select mb-3" aria-label="Default select example" name="id_kecamatan">
+            <select class="form-select mb-3 desa" aria-label="Default select example" name="id_kecamatan">
                 <option value="">--</option>
                 @foreach ($kecamatan as $data)
                     <option value="{{ $data->id }}" {{ $data->id == $desa->id_kecamatan ? 'selected' : '' }} >{{ $data->nama_kecamatan }}</option>

@@ -16,7 +16,7 @@
                         <h4>Data Keluarga</h4>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="mb-3 btn btn-primary btn-add">Tambah Keluarga</button>
+                        <button type="button" class="mb-3 btn btn-primary btn-add">Tambah Data</button>
                         {{ $dataTable->table() }}
                     </div>
                 </div>

@@ -18,7 +18,7 @@
                 <label for="nik" class="form-label">NIK</label>
                 <input type="text" placeholder="NIK.." value="{{ $pasien->nik }}"  name="nik" class="form-control" id="nik">
             </div>
-            <div class="col-md-12 mb-3">
+            {{-- <div class="col-md-12 mb-3">
                 <label>Keluaga Dari</label>
                 <select class="form-select " name="no_kk">
                     <option>--</option>
@@ -26,10 +26,6 @@
                     <option value="{{ $data->no_kk }}"{{ $data->no_kk == $pasien->no_kk ? 'selected' : '' }}>{{ $data->nama_ayah }}</option>
                     @endforeach
                 </select>
-            </div>
-            {{-- <div class="mb-3">
-                <label for="no_kk" class="form-label">No KK</label>
-                <input type="text" placeholder="No KK.." value="{{ $pasien->no_kk }}"  name="no_kk" class="form-control" id="no_kk">
             </div> --}}
             <div class="mb-3">
                 <label for="anak_ke" class="form-label">Anak Ke-</label>
@@ -77,6 +73,59 @@
                     <option value="{{ $data->id }}" {{ $data->id == $pasien->id_posyandu ? 'selected' : '' }} >{{ $data->nama_posyandu }}</option>
                 @endforeach
             </select>
+            
+            <!-- data keluarga -->
+            {{-- <h3>Data Keluarga</h3>
+            <div class="mb-3">
+                <label for="no_kk" class="form-label">Nomor KK</label>
+                <input type="text" placeholder="Nomor Kartu Keluarga.." value="{{ $keluarga->no_kk}}"  name="no_kk" class="form-control" id="no_kk">
+            </div>
+            <div class="mb-3">
+                <label for="nama_ayah" class="form-label">Nama Ayah</label>
+                <input type="text" placeholder="Nama ayah.." value="{{ $keluarga->nama_ayah }}"  name="nama_ayah" class="form-control" id="nama_ayah">
+            </div>
+            <div class="mb-3">
+                <label for="nik_ayah" class="form-label">Nik Ayah</label>
+                <input type="text" placeholder="Nik ayah.." value="{{ $keluarga->nik_ayah }}"  name="nik_ayah" class="form-control" id="nik_ayah">
+            </div>
+            <div class="mb-3">
+                <label for="nama_ibu" class="form-label">Nama Ibu</label>
+                <input type="text" placeholder="Nama ibu.." value="{{ $keluarga->nama_ibu }}"  name="nama_ibu" class="form-control" id="nama_ibu">
+            </div>
+            <div class="mb-3">
+                <label for="nik_ibu" class="form-label">Nik Ibu</label>
+                <input type="text" placeholder="Nik ibu.." value="{{ $keluarga->nik_ibu }}"  name="nik_ibu" class="form-control" id="nik_ibu">
+            </div>
+            <div class="mb-3">
+                <label for="no_telp" class="form-label">Nomor Telepon</label>
+                <input type="text" placeholder="Nomor Telepon.." value="{{ $keluarga->no_telp }}"  name="no_telp" class="form-control" id="no_telp">
+            </div>
+            <label class="form-label">Desa</label>
+            <select class="form-select mb-3" aria-label="Default select example" name="id_desa">
+                <option>--</option>
+                @foreach ($desa as $data)
+                    <option value="{{ $data->id }}" {{ $data->id == $keluarga->id_desa ? 'selected' : '' }} >{{ $data->nama_desa }}</option>
+                @endforeach
+            </select>
+            <div class="row mb-3">
+                <label class="form-label">Status Ekonomi</label>
+                <div class="col-md-12">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="1"
+                            value="1" name="status_ekonomi" {{ $keluarga->status_ekonomi == 1 ? 'checked' : '' }}>
+                        <label class="form-check-label" for="1">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="2"
+                            value="2" name="status_ekonomi" {{ $keluarga->status_ekonomi == 2 ? 'checked' : '' }}>
+                        <label class="form-check-label" for="2">2</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="alamat" class="form-label">Alamat</label>
+                <textarea class="form-control" id="alamat" name="alamat" rows="3">{{ $keluarga->alamat }}</textarea>
+            </div> --}}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary"

@@ -58,15 +58,15 @@ class BidanDataTable extends DataTable
                     ->setTableId('bidan-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    // ->dom('Bfrtip')
+                    ->orderBy(1);
+                    // ->buttons(
+                    //     Button::make('create'),
+                    //     Button::make('export'),
+                    //     Button::make('print'),
+                    //     Button::make('reset'),
+                    //     Button::make('reload')
+                    // );
     }
 
     /**

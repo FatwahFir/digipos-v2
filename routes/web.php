@@ -27,7 +27,8 @@ use App\Http\Controllers\JenisImunisasiController;
 */
 
 Route::get('/login', [LoginController::class, 'index'])->name('loginform')->middleware('guest');
-Route::get('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
+Route::get('/logout', [LoginController::class, 'logour'])->name('logout');
 
 Route::get('/', function () {
     return view('dashboard');
@@ -39,7 +40,7 @@ Route::get('/dashboard', function () {
 })
 ->middleware('auth')->name('dashboard');
 
-// Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function (){
     Route::resource('/users/admin', RoleController::class);
     Route::resource('/users/admin-puskesmas', AdminPuskesmasController::class);
     Route::resource('/users/bidan', BidanController::class);
@@ -55,7 +56,7 @@ Route::get('/dashboard', function () {
     Route::get('/gizi/data-gizi/{id}/create', [GiziController::class, 'create']);
     Route::get('/gizi/data-gizi/data-anak/{id}', [GiziController::class, 'dataAnak']);
     Route::delete('/gizi/data-gizi/{data_gizi:no_pemeriksaan_gizi}/delete', [GiziController::class, 'destory']);
-// });
+});
 
 
 // require __DIR__.'/auth.php';

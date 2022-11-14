@@ -6,17 +6,17 @@
 @section('content')
 <div class="main-content">
     <div class="title">
-        Pasien
+        Anak
     </div>
     <div class="content-wrapper">
         <div class="row same-height">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Data Pasien</h4>
+                        <h4>Data Anak</h4>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="mb-3 btn btn-primary btn-add"><span class="ti-plus"></span> Tambah Pasien</button>
+                        <button type="button" class="mb-3 btn btn-primary btn-add"><span class="ti-plus"></span> Tambah Data</button>
                         {{ $dataTable->table() }}
                     </div>
                 </div>

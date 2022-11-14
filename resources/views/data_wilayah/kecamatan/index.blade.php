@@ -16,7 +16,7 @@
                         <h4>Data Kecamatan</h4>
                     </div>
                     <div class="card-body">
-                        <button type="button" class="mb-3 btn btn-primary btn-add">Tambah Kecamatan</button>
+                        <button type="button" class="mb-3 btn btn-primary btn-add"> <span class="ti-plus"></span> Tambah Data</button>
                         {{ $dataTable->table() }}
                     </div>
                 </div>
