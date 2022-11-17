@@ -16,7 +16,9 @@
                         <h4>Data Anak</h4>
                     </div>
                     <div class="card-body">
+                        @can('create anak')
                         <button type="button" class="mb-3 btn btn-primary btn-add"><span class="ti-plus"></span> Tambah Data</button>
+                        @endcan
                         {{ $dataTable->table() }}
                     </div>
                 </div>
