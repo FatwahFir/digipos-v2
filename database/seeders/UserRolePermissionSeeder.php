@@ -126,8 +126,31 @@ class UserRolePermissionSeeder extends Seeder
                 
             
                     $permission = Permission::create(['name' => 'delete kader']);
+                    
+                    $permission = Permission::create(['name' => 'read anak']);
+                
+                
+                    $permission = Permission::create(['name' => 'create anak']);
+                
+                
+                    $permission = Permission::create(['name' => 'update anak']);
+                
+            
+                    $permission = Permission::create(['name' => 'delete anak']);
 
-            $roleSuperAdmin->givePermissionTo([
+                    $permission = Permission::create(['name' => 'read imunisasi']);
+                
+                
+                    $permission = Permission::create(['name' => 'create imunisasi']);
+                
+                
+                    $permission = Permission::create(['name' => 'update imunisasi']);
+                
+            
+                    $permission = Permission::create(['name' => 'delete imunisasi']);
+
+
+                    $roleSuperAdmin->givePermissionTo([
                 'create wilayah',
                 'read wilayah',
                 'update wilayah',
