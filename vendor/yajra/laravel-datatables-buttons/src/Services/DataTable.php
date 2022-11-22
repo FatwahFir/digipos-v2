@@ -193,14 +193,14 @@ abstract class DataTable implements DataTableButtons
     /**
      * Process dataTables needed render output.
      *
-     * @phpstan-param view-string $view
+     * @phpstan-param view-string|null $view
      *
-     * @param  string  $view
+     * @param  string|null  $view
      * @param  array  $data
      * @param  array  $mergeData
      * @return mixed
      */
-    public function render(string $view, array $data = [], array $mergeData = [])
+    public function render(string $view = null, array $data = [], array $mergeData = [])
     {
         if ($this->request()->ajax() && $this->request()->wantsJson()) {
             return app()->call([$this, 'ajax']);
@@ -208,14 +208,13 @@ abstract class DataTable implements DataTableButtons
 
         /** @var string $action */
         $action = $this->request()->get('action');
+        $actionMethod = $action === 'print' ? 'printPreview' : $action;
 
-        if (in_array($action, $this->actions)) {
-            if ($action == 'print') {
-                return app()->call([$this, 'printPreview']);
-            }
+        if (in_array($action, $this->actions) && method_exists($this, $actionMethod)) {
+            /** @var callable $callback */
+            $callback = [$this, $actionMethod];
 
-            // @phpstan-ignore-next-line
-            return app()->call([$this, $action]);
+            return app()->call($callback);
         }
 
         return view($view, $data, $mergeData)->with($this->dataTableVariable, $this->getHtmlBuilder());
@@ -682,10 +681,10 @@ abstract class DataTable implements DataTableButtons
      * Set a custom class attribute.
      *
      * @param  array|string  $key
-     * @param  array|string|null  $value
+     * @param  mixed|null  $value
      * @return $this
      */
-    public function with(array|string $key, array|string $value = null): static
+    public function with(array|string $key, mixed $value = null): static
     {
         if (is_array($key)) {
             $this->attributes = array_merge($this->attributes, $key);

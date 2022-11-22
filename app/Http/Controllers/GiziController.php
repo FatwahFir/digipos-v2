@@ -6,6 +6,7 @@ use DateTime;
 use Carbon\Carbon;
 use App\Models\Gizi;
 use App\Models\Pasien;
+use App\Models\Puskesmas;
 use App\Models\StandarWho;
 use App\Models\StatusGizi;
 use Illuminate\Http\Request;
@@ -22,8 +23,12 @@ class GiziController extends Controller
      */
     public function index(GiziDataTable $dataTable)
     {
+        // $gizi = Gizi::where('no_pemeriksaan_gizi', 'G2022112200001')->first();
+        // dd($gizi->pasien->posyandu->puskesmas->nama_puskesmas);
         // $this->authorize('read');
-        return $dataTable->render('gizi.data_gizi.index');
+        // dd(auth()->user()->name);
+        $puskesmas = Puskesmas::all();
+        return $dataTable->render('gizi.data_gizi.index', compact('puskesmas'));
 
     }
 

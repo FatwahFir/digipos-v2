@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?php echo e(asset('')); ?>/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('')); ?>/vendor/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="<?php echo e(asset('')); ?>/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.bootstrap5.min.css">
     <!-- CSS for this page only -->
     <?php echo $__env->yieldPushContent('css'); ?>
     <!-- End CSS  -->
@@ -49,6 +49,9 @@
     <?php echo $__env->yieldPushContent('js'); ?>
     <!-- ======= -->
     <script src="<?php echo e(asset('')); ?>/assets/js/main.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.bootstrap5.min.js"></script>
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
     <script>
         Main.init()
     </script>

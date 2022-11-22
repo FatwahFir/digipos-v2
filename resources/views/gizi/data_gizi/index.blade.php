@@ -16,6 +16,32 @@
                         <h4>Data Gizi</h4>
                     </div>
                     <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <select class="form-control form-select" name="" id="">
+                                    <option value="">-Puskesmas-</option>
+                                    @foreach ($puskesmas as $item)
+                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control form-select" name="" id="">
+                                    <option value="">-Tahun-</option>
+                                    @foreach ($puskesmas as $item)
+                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control form-select" name="" id="">
+                                    <option value="">-Bulan-</option>
+                                    @foreach ($puskesmas as $item)
+                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         {{ $dataTable->table() }}
                     </div>
                 </div>

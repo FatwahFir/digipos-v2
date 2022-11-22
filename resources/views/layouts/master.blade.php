@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('') }}/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('') }}/vendor/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="{{ asset('') }}/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.3/css/buttons.bootstrap5.min.css">
     <!-- CSS for this page only -->
     @stack('css')
     <!-- End CSS  -->
@@ -49,6 +49,9 @@
     @stack('js')
     <!-- ======= -->
     <script src="{{ asset('') }}/assets/js/main.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.bootstrap5.min.js"></script>
+    <script src="/vendor/datatables/buttons.server-side.js"></script>
     <script>
         Main.init()
     </script>

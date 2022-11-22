@@ -78,15 +78,11 @@ class GiziDataTable extends DataTable
                     ->minifiedAjax()
                     ->autoWidth(false)
                     ->responsive(true)
-                    // ->dom('Bfrtip')
-                    ->orderBy(1);
-                    // ->buttons(
-                    //     Button::make('create'),
-                    //     Button::make('export'),
-                    //     Button::make('print'),
-                    //     Button::make('reset'),
-                    //     Button::make('reload')
-                    // );
+                    ->dom('Bfrtip')
+                    ->orderBy(1)
+                    ->buttons(
+                        Button::make('excel')->addClass('btn btn-danger mb-3'),
+                    );
     }
 
     /**
@@ -104,8 +100,8 @@ class GiziDataTable extends DataTable
             Column::make('jk')->addClass('text-center')->orderable(false),
             Column::make('usia')->addClass('text-center')->orderable(false),
             Column::make('bb')->addClass('text-center')->orderable(false),
-            Column::make('detail')->addClass('text-center')->orderable(false)->width(80),
-            Column::make('data_anak')->addClass('text-center')->orderable(false)->width(80),
+            Column::make('detail')->addClass('text-center')->orderable(false)->width(80)->exportable(false),
+            Column::make('data_anak')->addClass('text-center')->orderable(false)->width(80)->exportable(false),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
