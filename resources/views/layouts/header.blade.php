@@ -8,7 +8,7 @@
             <div class="theme-switch-icon"></div>
         </div>
         <div class="header-content">
-            <div class="notification dropdown">
+            {{-- <div class="notification dropdown">
                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="far fa-envelope"></i>
                 </a>
@@ -89,8 +89,8 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-            <div class="notification dropdown">
+            </div> --}}
+            {{-- <div class="notification dropdown">
                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="far fa-bell"></i>
                     <span class="badge">12</span>
@@ -135,23 +135,33 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
             <div class="dropdown dropdown-menu-end">
                 <a href="#" class="user-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="label">
                         <span></span>
-                        <div>{{ auth()->user()->name }}</div>
+                        <div>
+                            @if(auth()->user()->hasRole('admin puskesmas'))
+                                {{ auth()->user()->AdminPuskesmas->nama }}
+                            @elseif(auth()->user()->hasRole('bidan'))
+                                {{ auth()->user()->bidan->nama }}
+                            @elseif(auth()->user()->hasRole('kader'))
+                                {{ auth()->user()->kader->nama }}
+                            @else
+                                {{ auth()->user()->admin->nama }}
+                            @endif
+                        </div>
                     </div>
-                    <img class="img-user" src="../assets/images/avatar1.png" alt="user"srcset="">
+                    <img class="img-user" src="{{ asset('assets/images/avatar1.png') }}" alt="user"srcset="">
                 </a>
                 <ul class="dropdown-menu small">
                     <!-- <li class="menu-header">
                         <a class="dropdown-item" href="#">Notifikasi</a>
                     </li> -->
                     <li class="menu-content ps-menu">
-                        <a href="#">
+                        <a href="{{ route('profile.show', auth()->user()->id) }}" >
                             <div class="description">
-                                <i class="ti-user"></i> Profile
+                                <i class="ti-user edit"></i> Profile
                             </div>
                         </a>
                         <a href="#">
@@ -159,21 +169,17 @@
                                 <i class="ti-settings"></i> Setting
                             </div>
                         </a>
-                        <a href="#">
+                        <form method="POST" action="">
+                            @csrf
+                            <a href="{{ route('logout') }}">
                             <div class="description">
-                                <i class="ti-power-off"></i> <span class="logout">Logout</span>
+                                <i class="ti-power-off"></i><span class="logout">Logout</span>
                                     <!-- Authentication -->
-                                    {{-- <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
             
-                                        <x-dropdown-link :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
-                                            {{ __('Log Out') }}
-                                        </x-dropdown-link> --}}
-                                    {{-- </form> --}}
                             </div>
-                        </a>
+                            </a>
+                        </form>
+                        
                     </li>
                 </ul>
             </div>
@@ -182,8 +188,9 @@
     </div>
 </header>
 @push('js')
-<script src="{{ asset('') }}vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
+<script src="{{ asset('vendor/sweetalert2/dist/sweetalert2.all.min.js') }}"></script>
     <script>
+        
     //     $('.logout').on('click', function(){
     //         // Swal.fire({
     //         //     title: 'Anda Yakin?',

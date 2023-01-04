@@ -57,6 +57,7 @@ class PuskesmasDataTable extends DataTable
                     ->setTableId('puskesmas-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(

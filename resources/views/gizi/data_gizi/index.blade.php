@@ -18,26 +18,26 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <div class="col-md-3">
-                                <select class="form-control form-select" name="" id="">
+                                <select class="form-control form-select filter-select" name="id_puskesmas" id="id_puskesmas">
                                     <option value="">-Puskesmas-</option>
                                     @foreach ($puskesmas as $item)
-                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                        <option value="{{ $item->id }}">{{ $item->nama_puskesmas }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <select class="form-control form-select" name="" id="">
+                                <select class="form-control form-select filter-select" name="id_year" id="id_year">
                                     <option value="">-Tahun-</option>
-                                    @foreach ($puskesmas as $item)
-                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                    @foreach ($years as $year)
+                                        <option value="{{ $year->year }}">{{ $year->year }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <select class="form-control form-select" name="" id="">
+                                <select class="form-control form-select" name="id_month" id="id_month">
                                     <option value="">-Bulan-</option>
-                                    @foreach ($puskesmas as $item)
-                                        <option value="{{ $item->nama_puskesmas }}">{{ $item->nama_puskesmas }}</option>
+                                    @foreach ($months as $month)
+                                        <option value="{{ $month->month }}">{{ $month->month }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -101,6 +101,42 @@
                 }
             })
         })
+        // sorting
+
+        $(document).ready(function(){
+
+            let table = $('#gizi-table')
+            // console.log(table)
+            $('#id_puskesmas').on('change' , function(){
+                table.on('preXhr.dt', function ( e, settings, data ) {
+                data.id_puskesmas = $('#id_puskesmas').val();
+                })
+
+                table.DataTable().ajax.reload()
+            })
+            $('#id_year').on('change' , function(){
+                table.on('preXhr.dt', function ( e, settings, data ) {
+                data.id_year = $('#id_year').val();
+                })
+
+                table.DataTable().ajax.reload()
+            })
+            $('#id_month').on('change' , function(){
+                table.on('preXhr.dt', function ( e, settings, data ) {
+                data.id_month = $('#id_month').val();
+                })
+
+                table.DataTable().ajax.reload()
+            })
+            $('.buttons-reset').on('click', function(){
+                $('#id_puskesmas').prop('selectedIndex',0)
+                $('#id_year').prop('selectedIndex',0)
+                $('#id_month').prop('selectedIndex',0)
+                window.LaravelDataTables["gizi-table"].ajax.reload()
+            })
+        })
+ 
+            
         
         //DetailGizi
         $('#gizi-table').on('click','.data-anak', function(){

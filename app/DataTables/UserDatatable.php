@@ -3,6 +3,8 @@
 namespace App\DataTables;
 
 // use App\Models\Role;
+
+use App\Models\Admin;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Yajra\DataTables\Html\Button;
@@ -25,14 +27,14 @@ class UserDatatable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($user){
+            ->addColumn('action', function ($admin){
                 return '
-                    <button class="btn btn-info btn-sm action" data-id="'.$user->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
-                    <button class="btn btn-danger btn-sm action" data-id="'.$user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
+                    <button class="btn btn-info btn-sm action" data-id="'.$admin->user->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
+                    <button class="btn btn-danger btn-sm action" data-id="'.$admin->user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
             })
-            ->addColumn('role', function($user){
-                return $user->getRoleNames()->first();
-            })
+            // ->addColumn('role', function($user){
+            //     return $user->getRoleNames()->first();
+            // })
             ->addIndexColumn()
             ->setRowId('id');
     }
@@ -43,9 +45,10 @@ class UserDatatable extends DataTable
      * @param \App\Models\UserDatatable $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Admin $model): QueryBuilder
     {
-        return $model->role('super admin');
+        // dd(auth()->id());
+        return $model->where("user_id" , "!=" , auth()->id())->newQuery()->with('user');
     }
 
     /**
@@ -59,6 +62,7 @@ class UserDatatable extends DataTable
                     ->setTableId('userdatatable-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(
@@ -79,9 +83,9 @@ class UserDatatable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false)->addClass('text-center'),
-            Column::make('name')->addClass('text-center')->orderable(false),
-            Column::make('username')->addClass('text-center')->orderable(false),
-            Column::make('role')->searchable(true)->addClass('text-center')->orderable(false),
+            Column::make('nama')->addClass('text-center')->orderable(false),
+            Column::make('user.username')->addClass('text-center')->orderable(false),
+            // Column::make('role')->searchable(true)->addClass('text-center')->orderable(false),
             Column::computed('action')
                     ->exportable(false)
                     ->printable(false)

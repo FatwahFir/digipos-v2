@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\DataTables\UserDatatable;
 use Spatie\Permission\Models\Role;
@@ -44,7 +45,14 @@ class RoleController extends Controller
         // dd($request);
         $validatedData = $request;
         $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData->all())->assignRole('super admin');
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'password' => bcrypt('password'),
+        ])->assignRole('super admin');
+        Admin::create([
+            'nama' => $validatedData['name'],
+            'user_id' => $user->id
+        ]);
 
         return response()->json([
             'status' => 'Sukses',
@@ -85,17 +93,19 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
-        $rules = [
-            'name' => 'required|max:255',
-            'password' => 'required|min:6|max:255'
-        ];
         if($request->username != $user->username){
-            $rules['username'] = 'required|unique:users|min:6';
+            $rules = ['username' => 'required|unique:users|min:6', 'name' => 'required|max:255'];
+            $validatedData = $request->validate($rules);
+            User::where('id', $id)->update(['username' => $validatedData['username']]);
+            Admin::where('user_id', $id)->update(['nama' => $validatedData['name']]);
+        }else{
+            $rules = ['name' => 'required|max:255'];
+            $validatedData = $request->validate($rules);
+            Admin::where('user_id', $id)->update(['nama' => $validatedData['name']]);
+            
         }
 
-        $validatedData = $request->validate($rules);
 
-        User::where('id', $id)->update($validatedData);
 
         return response()->json([
             'status' => 'Sukses',
@@ -112,6 +122,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        Admin::where('user_id', $id)->delete();
         User::findOrFail($id)->delete();
 
         return response()->json([

@@ -54,6 +54,7 @@ class PosyanduDataTable extends DataTable
                     ->setTableId('posyandu-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(

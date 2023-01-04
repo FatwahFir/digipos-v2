@@ -18,7 +18,7 @@
     <div class="sidebar-content">
         <ul>
             <li class="{{ request()->segment(1) == '' || request()->segment(1) ==  'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('dashboard') }}" class="link">
+                <a href="{{ route('index') }}" class="link">
                     <i class="ti-home"></i>
                     <span>Dashboard</span>
                 </a>
@@ -26,12 +26,14 @@
             <li>
                 <hr class="mt-4">
             </li>
-            <li class="{{ request()->segment(1) == '' || request()->segment(1) ==  'gizi' ? 'active' : '' }}">
+            {{-- @if (auth()->user()->hasRole('bidan')) --}}
+            <li class="{{ request()->segment(1) ==  'gizi' ? 'active' : '' }}">
                 <a href="{{ route('data-gizi.index') }}" class="link">
                     <i class="ti-briefcase"></i>
                     <span>Data Gizi</span>
                 </a>
             </li>
+            {{-- @endif --}}
             {{-- <li class="{{ request()->segment(1) == 'gizi' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-desktop"></i>
@@ -42,29 +44,54 @@
                     <li><a href="element-ui.html" class="link"><span>Riwayat</span></a></li>
                 </ul>
             </li> --}}
+            @if (auth()->user()->hasRole('kader'))
             <li class="{{ request()->segment(1) == 'imunisasi' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-shield"></i>
                     <span>Imunisasi</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'imunisasi' ? 'expand' : '' }}">
-                    <li><a href="element-ui.html" class="link"><span>Data Imunisasi</span></a></li>
+                    <li class="{{ request()->segment(2) == 'data-imunisasi' ? 'active' : '' }}"><a href="{{ route('data-imunisasi.index') }}" class="link"><span>Data Imunisasi</span></a></li>
                     <li class="{{ request()->segment(2) == 'jenis-imunisasi' ? 'active' : '' }}"><a href="{{ route('jenis-imunisasi.index') }}" class="link"><span>Jenis Imunisasi</span></a></li>
                 </ul>
             </li>
+            @endif
             <li>
                 <hr class="mt-4">
             </li>
+            @if(auth()->user()->hasRole('super admin'))
             <li class="{{ request()->segment(1) == 'unit-kesehatan' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-wheelchair"></i>
                     <span>Unit Kesehatan</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'unit-kesehatan' ? 'expand' : '' }}">
+                    @if(auth()->user()->hasRole('super admin'))
                     <li class="{{ request()->segment(2) == 'puskesmas' ? 'active' : '' }}"><a href="{{ route('puskesmas.index') }}" class="link"><span>Puskesmas</span></a></li>
+                    @endif
+                    {{-- @if(auth()->user()->hasRole('admin puskesmas'))
                     <li class="{{ request()->segment(2) == 'posyandu' ? 'active' : '' }}"><a href="{{ route('posyandu.index') }}" class="link"><span>Posyandu</span></a></li>
+                    @endif --}}
                 </ul>
             </li>
+            @elseif(auth()->user()->hasRole('admin puskesmas'))
+            <li class="{{ request()->segment(1) == 'unit-kesehatan' ? 'active open' : '' }}">
+                <a href="#" class="main-menu has-dropdown">
+                    <i class="ti-wheelchair"></i>
+                    <span>Unit Kesehatan</span>
+                </a>
+                <ul class="sub-menu {{ request()->segment(1) == 'unit-kesehatan' ? 'expand' : '' }}">
+                    {{-- @if(auth()->user()->hasRole('super admin'))
+                    <li class="{{ request()->segment(2) == 'puskesmas' ? 'active' : '' }}"><a href="{{ route('puskesmas.index') }}" class="link"><span>Puskesmas</span></a></li>
+                    @endif --}}
+                    @if(auth()->user()->hasRole('admin puskesmas'))
+                    <li class="{{ request()->segment(2) == 'posyandu' ? 'active' : '' }}"><a href="{{ route('posyandu.index') }}" class="link"><span>Posyandu</span></a></li>
+                    @endif
+                </ul>
+            </li>
+            @endif
+            {{-- @endif --}}
+            @if(auth()->user()->hasRole('super admin'))
             <li class="{{ request()->segment(1) == 'wilayah' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-location-arrow"></i>
@@ -75,24 +102,54 @@
                     <li class="{{ request()->segment(2) == 'desa' ? 'active' : '' }}"><a href="{{ route('desa.index') }}" class="link"><span>Desa</span></a></li>
                 </ul>
             </li>
+            @endif
+            @if(auth()->user()->hasRole('super admin'))
             <li class=" {{ request()->segment(1) == 'users' ? 'active open' : '' }}">
                 <a href="#" class="main-menu has-dropdown">
                     <i class="ti-user"></i>
                     <span>Akun Pengguna</span>
                 </a>
                 <ul class="sub-menu {{ request()->segment(1) == 'users' ? 'expand' : '' }}">
+                    @if(auth()->user()->hasRole('super admin'))
                     <li class="{{ request()->segment(2) == 'admin' ? 'active' : '' }}"><a href="{{ route('admin.index') }}" class="link"><span>Admin</span></a></li>
                     <li class="{{ request()->segment(2) == 'admin-puskesmas' ? 'active' : '' }}"><a href="{{ route('admin-puskesmas.index') }}" class="link"><span>Admin Puskesmas</span></a></li>
+                    @endif
+                    {{-- @if(auth()->user()->hasRole('admin puskesmas'))
                     <li class="{{ request()->segment(2) == 'bidan' ? 'active' : '' }}"><a href="{{ route('bidan.index') }}" class="link"><span>Bidan</span></a></li>
                     <li class="{{ request()->segment(2) == 'kader' ? 'active' : '' }}"><a href="{{ route('kader.index') }}" class="link"><span>Kader</span></a></li>
+                    @endif --}}
+                  
                 </ul>
             </li>
+            @elseif(auth()->user()->hasRole('admin puskesmas'))
+            <li class=" {{ request()->segment(1) == 'users' ? 'active open' : '' }}">
+                <a href="#" class="main-menu has-dropdown">
+                    <i class="ti-user"></i>
+                    <span>Akun Pengguna</span>
+                </a>
+                <ul class="sub-menu {{ request()->segment(1) == 'users' ? 'expand' : '' }}">
+                    {{-- @if(auth()->user()->hasRole('super admin'))
+                    <li class="{{ request()->segment(2) == 'admin' ? 'active' : '' }}"><a href="{{ route('admin.index') }}" class="link"><span>Admin</span></a></li>
+                    <li class="{{ request()->segment(2) == 'admin-puskesmas' ? 'active' : '' }}"><a href="{{ route('admin-puskesmas.index') }}" class="link"><span>Admin Puskesmas</span></a></li>
+                    @endif --}}
+                    @if(auth()->user()->hasRole('admin puskesmas'))
+                    <li class="{{ request()->segment(2) == 'bidan' ? 'active' : '' }}"><a href="{{ route('bidan.index') }}" class="link"><span>Bidan</span></a></li>
+                    <li class="{{ request()->segment(2) == 'kader' ? 'active' : '' }}"><a href="{{ route('kader.index') }}" class="link"><span>Kader</span></a></li>
+                    @endif
+                  
+                </ul>
+            </li>
+            @endif
+       
+            @if (auth()->user()->hasRole('kader'))
+                
             <li class="{{ request()->segment(1) ==  'pasien' ? 'active' : '' }}">
                 <a href="{{ route('data-pasien.index') }}" class="link">
                     <i class="ti-basketball"></i>
                     <span>Anak</span>
                 </a>
             </li>
+            @endif
             {{-- <li class="{{ request()->segment(1) == 'pasien' ? 'active' : '' }}">
                 <a href="{{ route('data-pasien.index') }}" class="main-menu has-dropdown">
                     <i class="ti-basketball"></i>

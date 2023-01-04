@@ -15,10 +15,10 @@
                 <label for="nama_anak" class="form-label">Nama Anak</label>
                 <input type="text" placeholder="Nama anak.." value="{{ $gizi->no_pemeriksaan_gizi? $gizi->pasien->nama_anak : $pasien->nama_anak}}" disabled name="nama_anak" class="form-control" id="nama_anak">
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="tgl_periksa" class="form-label">Tanggal Periksa</label>
                 <input type="date" placeholder="Tanggal periksa.." value="{{ $gizi->tgl_periksa }}"  name="tgl_periksa" class="form-control" id="tgl_periksa">
-            </div>
+            </div> --}}
             <div class="mb-3">
                 <label for="bb" class="form-label">Berat Badan</label>
                 <input type="text" placeholder="Berat badan" value="{{ $gizi->bb}}" name="bb" class="form-control" id="bb">

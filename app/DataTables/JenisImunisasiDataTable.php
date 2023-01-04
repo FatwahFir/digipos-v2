@@ -54,6 +54,7 @@ class JenisImunisasiDataTable extends DataTable
                     ->setTableId('jenisimunisasi-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(

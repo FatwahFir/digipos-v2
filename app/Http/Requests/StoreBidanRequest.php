@@ -26,7 +26,8 @@ class StoreBidanRequest extends FormRequest
         return [
             'name' => 'required',
             'username' => 'required|unique:users|min:6',
-            'password' => 'required|min:6'
+            'puskesmas_id' => 'required'
+            
         ];
     }
 }

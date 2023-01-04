@@ -54,6 +54,7 @@ class KecamatanDataTable extends DataTable
                     ->setTableId('kecamatan-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(

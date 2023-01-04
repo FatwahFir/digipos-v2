@@ -95,6 +95,33 @@
             })
             // console.log('masuk');
         })
+        //addimunisasi
+        $('#pasien-table').on('click', '.action-imunisasi', function(){
+            let data = $(this).data()
+            let id = data.id
+            let jenis = data.jenis
+
+            $.ajax({
+                method: 'get',
+                url: `{{ url('imunisasi/data-imunisasi/')}}/${id}/create`,
+                success: function(res){
+                    $('#modalAction').find('.modal-dialog').html(res)
+                    modal.show()
+                    store()
+                },
+                error: function(res){
+                        let errors = res.responseJSON?.errors
+                        $(_form).find('.text-danger.text-small').remove()
+                        if(errors){
+                            for(const [key, value] of Object.entries(errors)){
+                                $(`[name='${key}']`).parent().append(`<span class="text-danger text-small">${value}</span>`)
+                                $(`[name='${key}']`).addClass('is-invalid')
+                            }
+                        }
+                    }
+            })
+            // console.log('masuk');
+        })
         
         //Riwayat
         $('#pasien-table').on('click', '.riwayat', function(){

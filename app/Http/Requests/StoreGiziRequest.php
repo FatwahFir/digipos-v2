@@ -25,7 +25,6 @@ class StoreGiziRequest extends FormRequest
     {
         return [
             'id_pasien' => 'required',
-            'tgl_periksa' => 'required',
             'bb' => 'required|numeric',
             'pb_tb' => 'required|numeric',
             'asi_eks' => 'required',

@@ -19,5 +19,13 @@ class Posyandu extends Model
     public function puskesmas(){
         return $this->belongsTo(Puskesmas::class, 'id_puskesmas');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // public function pasien(){
+    //     return $this->hasMany(Pasien::class);
+    // }
 }
 

@@ -3,12 +3,16 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Bidan;
+use App\Models\Kader;
+use illuminate\Support\Str;
+use App\Models\AdminPuskesmas;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\DB;
-use illuminate\Support\Str;
 
 class UserRolePermissionSeeder extends Seeder
 {
@@ -31,21 +35,43 @@ class UserRolePermissionSeeder extends Seeder
                 'name' => 'superAdmin',
                 'username' => 'superAdmin',
             ], $default_users));
+            Admin::create(array_merge([
+                'nama' => 'super Admin',
+                'user_id' => 1,
+            ]));
     
             $adminPuskesmas = User::create(array_merge([
                 'name' => 'adminPuskesmas',
                 'username' => 'adminPuskesmas@gmail.com',
             ], $default_users));
+            AdminPuskesmas::create(array_merge([
+                'nama' => 'Admin Puskesmas',
+                'phone' => '+62234351629',
+                'user_id' => 2,
+                'puskesmas_id' => 1,
+            ]));
     
             $kader = User::create(array_merge([
                 'name' => 'kader',
                 'username' => 'kader@gmail.com',
             ], $default_users));
+            Kader::create(array_merge([
+                'nama' => 'Kader',
+                'phone' => '+62',
+                'user_id' => 3,
+                'posyandu_id' => 1,
+            ]));
             
             $bidan = User::create(array_merge([
                 'name' => 'bidan',
                 'username' => 'bidan@gmail.com',
             ], $default_users));
+            Bidan::create(array_merge([
+                'nama' => 'Bidan',
+                'phone' => '+62',
+                'user_id' => 4,
+                'puskesmas_id' => 1,
+            ]));
     
             $roleSuperAdmin = Role::create(['name' => 'super admin']);
             // $roleAdminDinas = Role::create(['name' => 'admin dinas']);
@@ -57,6 +83,7 @@ class UserRolePermissionSeeder extends Seeder
             // $permission = Permission::create(['name' => 'create']);
             // $permission = Permission::create(['name' => 'update']);
             // $permission = Permission::create(['name' => 'delete']);
+                    $permission = Permission::create(['name' => 'read dashboard']);
 
                     $permission = Permission::create(['name' => 'read wilayah']);
             
@@ -150,7 +177,8 @@ class UserRolePermissionSeeder extends Seeder
                     $permission = Permission::create(['name' => 'delete imunisasi']);
 
 
-                    $roleSuperAdmin->givePermissionTo([
+            $roleSuperAdmin->givePermissionTo([
+                'read dashboard',
                 'create wilayah',
                 'read wilayah',
                 'update wilayah',
@@ -163,6 +191,7 @@ class UserRolePermissionSeeder extends Seeder
             ]);
 
             $roleAdminPuskesmas->givePermissionTo([
+                'read dashboard',
                 'create posyandu',
                 'read posyandu',
                 'update posyandu',
@@ -179,6 +208,7 @@ class UserRolePermissionSeeder extends Seeder
             ]);
 
             $roleKader->givePermissionTo([
+                'read dashboard',
                 'create gizi',
                 'read gizi',
                 'update gizi',
@@ -194,6 +224,7 @@ class UserRolePermissionSeeder extends Seeder
             ]);
 
             $roleBidan->givePermissionTo([
+                'read dashboard',
                 'read gizi'
             ]);
             

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Puskesmas;
 use Illuminate\Http\Request;
 use App\Models\AdminPuskesmas;
 use App\Http\Requests\StoreAdminRequest;
@@ -29,8 +30,9 @@ class AdminPuskesmasController extends Controller
      */
     public function create()
     {   
+        $puskesmas = Puskesmas::get();
         $user = new User();
-        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user'));
+        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user', 'puskesmas'));
     }
 
     /**
@@ -43,9 +45,16 @@ class AdminPuskesmasController extends Controller
     {
         // dd($request);
         $validatedData = $request;
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData->all())->assignRole('admin puskesmas');
-
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'password' => bcrypt('password'),
+        ])->assignRole('admin puskesmas');
+        AdminPuskesmas::create([
+            'nama' => $validatedData['name'],
+            'user_id' => $user->id,
+            'puskesmas_id' => $validatedData['puskesmas_id'],
+        ]);
         return response()->json([
             'status' => 'Sukses',
             'message' => 'Berhasil menambahkan akun admin'
@@ -71,8 +80,9 @@ class AdminPuskesmasController extends Controller
      */
     public function edit($id)
     {
+        $puskesmas = Puskesmas::get();
         $user = User::findOrFail($id);
-        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user'));
+        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user' , 'puskesmas'));
     }
 
     /**
@@ -112,6 +122,7 @@ class AdminPuskesmasController extends Controller
      */
     public function destroy($id)
     {
+        AdminPuskesmas::where('user_id', $id)->delete();
         User::findOrFail($id)->delete();
 
         return response()->json([

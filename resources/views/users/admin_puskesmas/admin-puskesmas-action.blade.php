@@ -12,15 +12,23 @@
     <div class="modal-body">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" placeholder="Nama.." value="{{ $user->name }}" name="name" class="form-control" id="name">
+            <input type="text" placeholder="Nama.." value="{{ $user->id ? $user->AdminPuskesmas->nama : '' }}" name="name" class="form-control" id="name">
         </div>
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
             <input type="text" placeholder="username.." value="{{ $user->username }}" name="username" class="form-control" id="username">
         </div>
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" placeholder="Password here.." value="{{ $user->password }}" name="password" class="form-control" id="password">
+        </div> --}}
+        <div class="mb-3">
+            <label for="puskesmas_id">Puskesmas</label>
+            <select id="puskesmas_id" name="puskesmas_id" class="form-control form-select">
+                @foreach ($puskesmas as $item)
+                    <option value="{{ $item->id }}">{{ $item->nama_puskesmas }}</option>
+                @endforeach
+            </select>
         </div>
         
     </div>

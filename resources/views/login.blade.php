@@ -56,7 +56,7 @@
 						<input type="password" class="input" name="password">
 				</div>
 				</div>
-				<a href="#">Forgot Password?</a>
+				<a href="{{ route('lupa_password') }}">Forgot Password?</a>
                 <button class="btn" type="submit">Log in</button>
 			</form>
 		</div>

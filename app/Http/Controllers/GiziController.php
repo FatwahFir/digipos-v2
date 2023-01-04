@@ -11,12 +11,15 @@ use App\Models\StandarWho;
 use App\Models\StatusGizi;
 use Illuminate\Http\Request;
 use App\DataTables\GiziDataTable;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreGiziRequest;
 use App\Http\Requests\UpdateGiziRequest;
 
 class GiziController extends Controller
 {
+    protected $dateFormat = 'M d, Y';
     /**
+     *
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -27,8 +30,16 @@ class GiziController extends Controller
         // dd($gizi->pasien->posyandu->puskesmas->nama_puskesmas);
         // $this->authorize('read');
         // dd(auth()->user()->name);
+        // $tahun = Gizi::select(DB::raw('YEAR(tgl_periksa) year'))->groupBy('year')->pluck('year');
         $puskesmas = Puskesmas::all();
-        return $dataTable->render('gizi.data_gizi.index', compact('puskesmas'));
+        $gizi = Gizi::get();
+        // dd($gizi['tgl_periksa']);
+        // dd(date_diff($gizi->tgl_periksa)->y);
+        // $tahun = $gizi->sortBy('tgl_periksa',date('y'))->pluck('tgl_periksa', date('y'))->unique();
+        $years = Gizi::select(DB::raw('YEAR(tgl_periksa) year'))->groupBy('year')->get();
+        $months = Gizi::select(DB::raw('MONTH(tgl_periksa) month'))->groupBy('month')->get();
+        // dd($years);
+        return $dataTable->render('gizi.data_gizi.index', compact('puskesmas','gizi','years','months'));
 
     }
 

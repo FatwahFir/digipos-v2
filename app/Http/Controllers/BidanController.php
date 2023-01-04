@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Bidan;
+use App\Models\Puskesmas;
 use Illuminate\Http\Request;
 use App\DataTables\BidanDataTable;
 use App\Http\Requests\StoreBidanRequest;
@@ -17,6 +19,7 @@ class BidanController extends Controller
     public function index(BidanDataTable $dataTable)
     {
         // $this->authorize('read');
+        // dd($user->id);
         return $dataTable->render('users.bidan.index');
     }
 
@@ -28,7 +31,8 @@ class BidanController extends Controller
     public function create()
     {   
         $user = new User();
-        return view('users.bidan.bidan-action', compact('user'));
+        $puskesmas = Puskesmas::get();
+        return view('users.bidan.bidan-action', compact('user', 'puskesmas'));
     }
 
     /**
@@ -41,9 +45,16 @@ class BidanController extends Controller
     {
         // dd($request);
         $validatedData = $request;
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData->all())->assignRole('bidan');
-
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'password' => bcrypt('password'),
+        ])->assignRole('bidan');
+        Bidan::create([
+            'nama' => $validatedData['name'],
+            'user_id' => $user->id,
+            'puskesmas_id' => $validatedData['puskesmas_id'],
+        ]);
         return response()->json([
             'status' => 'Sukses',
             'message' => 'Berhasil menambahkan akun admin'
@@ -70,7 +81,9 @@ class BidanController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user'));
+        $puskesmas = Puskesmas::get();
+
+        return view('users.bidan.bidan-action', compact('user', 'puskesmas'));
     }
 
     /**
@@ -111,6 +124,7 @@ class BidanController extends Controller
      */
     public function destroy($id)
     {
+        Bidan::where('user_id', $id)->delete();
         User::findOrFail($id)->delete();
 
         return response()->json([

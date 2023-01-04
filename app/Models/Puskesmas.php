@@ -15,4 +15,19 @@ class Puskesmas extends Model
     public function kecamatan(){
         return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
     }
+
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // public function adminpuskesmas()
+    // {
+    //     return $this->belongsTo(AdminPuskesmas::class);
+    // }
+
+//     public function posyandu(){
+//         return $this->hasMany(Posyandu::class);
+//     }
 }

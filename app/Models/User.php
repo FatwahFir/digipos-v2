@@ -23,6 +23,10 @@ class User extends Authenticatable
 
     // protected $table = 'users';
 
+    protected $fillable = [
+        'name','username','password'
+    ];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -32,6 +36,31 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class ,"user_id","id");
+    }   
+
+    public function AdminPuskesmas()
+    {
+        return $this->hasOne(AdminPuskesmas::class,"user_id","id");
+    }
+
+    public function kader()
+    {
+        return $this->hasOne(Kader::class ,"user_id","id");
+    }
+
+    public function puskesmas()
+    {
+        return $this->hasOne(Puskesmas::class,"user_id","id");
+    }
+
+    public function bidan()
+    {
+        return $this->hasOne(Bidan::class ,"user_id","id");
+    }
 
     /**
      * The attributes that should be cast.

@@ -8,12 +8,17 @@ use App\Http\Controllers\BidanController;
 use App\Http\Controllers\KaderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PasienController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KeluargaController;
 use App\Http\Controllers\PosyanduController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImunisasiController;
 use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\PuskesmasController;
+use App\Http\Controllers\UbahPasswordController;
 use App\Http\Controllers\AdminPuskesmasController;
 use App\Http\Controllers\JenisImunisasiController;
+use App\Http\Controllers\LupaPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,22 +30,36 @@ use App\Http\Controllers\JenisImunisasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/lupa_password', [LupaPasswordController::class, 'index'])->name('lupa_password');
+Route::post('/lupa_password', [LupaPasswordController::class, 'cek_password'])->name('check_lupa_password');
 Route::get('/login', [LoginController::class, 'index'])->name('loginform')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
-Route::get('/logout', [LoginController::class, 'logour'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('dashboard');
-})
-->middleware('auth');
+// Route::get('/', function () {
+//     return view('dashboard');
+// })
+// ->middleware('auth');
+// Route::get('/dashboard', [DashboardController::class])->middleware('auth')->name('dashboard');
+// Route::controller(dashboardController::class)->prefix('data/dashboard')->name('dashboard.')->group(function () {
+//     Route::get('/chart/{year?}', 'chart')->name('chart');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})
-->middleware('auth')->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })
+// ->middleware('auth')->name('dashboard');
 
 Route::middleware('auth')->group(function (){
+
+    // Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('index');
+
+    Route::resource('/profile', ProfileController::class);
+    Route::get('/profile/{id}/ubah_password', [UbahPasswordController::class ,'index'])->name('ubah_password');
+    Route::post('/profile/{id}/ubah_password', [UbahPasswordController::class ,'update'])->name('update_password');
+    // Route::resource('/profile/{id}/ubah_password', UbahPasswordController::class);
+ 
 
     Route::resource('/users/admin', RoleController::class);
     Route::resource('/users/admin-puskesmas', AdminPuskesmasController::class);
@@ -58,6 +77,8 @@ Route::middleware('auth')->group(function (){
     Route::resource('/unit-kesehatan/puskesmas', PuskesmasController::class);
 
     Route::resource('/imunisasi/jenis-imunisasi', JenisImunisasiController::class);
+    Route::resource('/imunisasi/data-imunisasi', ImunisasiController::class);
+    Route::get('/imunisasi/data-imunisasi/{id}/create',[ ImunisasiController::class, 'create']);   
 
     Route::resource('/gizi/data-gizi', GiziController::class);
     Route::get('/gizi/data-gizi/{id}/create', [GiziController::class, 'create']);

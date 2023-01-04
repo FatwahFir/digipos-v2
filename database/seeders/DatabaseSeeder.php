@@ -18,5 +18,12 @@ class DatabaseSeeder extends Seeder
         $this->call(KecamatanSeeder::class);
         $this->call(DesaSeeder::class);
         $this->call(KeluargaSeeder::class);
+        $this->call(PuskesmasSeeder::class);
+        $this->call(PosyanduSeeder::class);
+        $this->call(AnakSeeder::class);
+        $this->call(GiziSeeder::class);
+        $this->call(StatusGiziSeeder::class);
+        $this->call(ImunisasiSeeder::class);
+        $this->call(JenisImunisasiSeeder::class);
     }
 }

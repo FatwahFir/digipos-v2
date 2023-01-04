@@ -20,18 +20,6 @@ class KecamatanSeeder extends Seeder
                 'nama_kecamatan' => 'Widasari',
                 'kodepos' => '45271'
             ],
-            [
-                'nama_kecamatan' => 'Jatibarang',
-                'kodepos' => '45063'
-            ],
-            [
-                'nama_kecamatan' => 'Lohbener',
-                'kodepos' => '40134'
-            ],
-            [
-                'nama_kecamatan' => 'Lobener',
-                'kodepos' => '45845'
-            ]
         ));
     }
 }

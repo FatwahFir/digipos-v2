@@ -13,7 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('admin_puskesmas', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('nama')->nullable();
+            $table->string('phone')->nullable();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('puskesmas_id');
+            $table->timestamps();
+        });
     }
 
     /**

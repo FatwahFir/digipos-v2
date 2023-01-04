@@ -57,6 +57,7 @@ class KeluargaDataTable extends DataTable
                     ->setTableId('keluarga-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(

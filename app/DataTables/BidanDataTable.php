@@ -24,13 +24,10 @@ class BidanDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($user){
+            ->addColumn('action', function ($bidan){
                 return '
-                    <button class="btn btn-info btn-sm action" data-id="'.$user->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
-                    <button class="btn btn-danger btn-sm action" data-id="'.$user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
-            })
-            ->addColumn('role', function($user){
-                return $user->getRoleNames()->first();
+                    <button class="btn btn-info btn-sm action" data-id="'.$bidan->user->id.'" data-jenis="edit"><i class="ti-pencil"></i></button>
+                    <button class="btn btn-danger btn-sm action" data-id="'.$bidan->user->id.'" data-jenis="delete"><i class="ti-trash"></i></button>';
             })
             ->addIndexColumn()
             ->setRowId('id');
@@ -42,9 +39,9 @@ class BidanDataTable extends DataTable
      * @param \App\Models\Bidan $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(User $model): QueryBuilder
+    public function query(Bidan $model): QueryBuilder
     {
-        return $model->role('bidan');
+        return $model->where("user_id" , "!=" , auth()->id())->newQuery()->with('user');
     }
 
     /**
@@ -58,6 +55,7 @@ class BidanDataTable extends DataTable
                     ->setTableId('bidan-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(
@@ -78,9 +76,9 @@ class BidanDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false)->addClass('text-center'),
-            Column::make('name')->addClass('text-center')->orderable(false),
-            Column::make('username')->addClass('text-center')->orderable(false),
-            Column::make('role')->searchable(true)->addClass('text-center')->orderable(false),
+            Column::make('nama')->addClass('text-center')->orderable(false),
+            Column::make('user.username')->addClass('text-center')->orderable(false),
+            // Column::make('role')->searchable(true)->addClass('text-center')->orderable(false),
             Column::computed('action')
                     ->exportable(false)
                     ->printable(false)

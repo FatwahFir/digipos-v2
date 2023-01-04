@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Kader;
+use App\Models\Posyandu;
 use Illuminate\Http\Request;
 use App\DataTables\KaderDataTable;
 use App\Http\Requests\StoreKaderRequest;
@@ -29,7 +30,8 @@ class KaderController extends Controller
     public function create()
     {   
         $user = new User();
-        return view('users.kader.kader-action', compact('user'));
+        $posyandu = Posyandu::get();
+        return view('users.kader.kader-action', compact('user' , 'posyandu'));
     }
 
     /**
@@ -42,13 +44,22 @@ class KaderController extends Controller
     {
         // dd($request);
         $validatedData = $request;
-        $validatedData['password'] = bcrypt($validatedData['password']);
-        User::create($validatedData->all())->assignRole('kader');
-
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $user = User::create([
+            'username' => $validatedData['username'],
+            'password' => bcrypt('password'),
+        ])->assignRole('kader');
+        Kader::create([
+            'nama' => $validatedData['name'],
+            'user_id' => $user->id,
+            'posyandu_id' => $validatedData['posyandu_id'],
+        ]);
         return response()->json([
             'status' => 'Sukses',
             'message' => 'Berhasil menambahkan akun admin'
         ]);
+
+        
     }
 
     /**
@@ -70,8 +81,9 @@ class KaderController extends Controller
      */
     public function edit($id)
     {
+        $posyandu = Posyandu::get();
         $user = User::findOrFail($id);
-        return view('users.admin_puskesmas.admin-puskesmas-action', compact('user'));
+        return view('users.kader.kader-action', compact('user' , 'posyandu'));
     }
 
     /**
@@ -111,6 +123,7 @@ class KaderController extends Controller
      */
     public function destroy($id)
     {
+        Kader::where('user_id', $id)->delete();
         User::findOrFail($id)->delete();
 
         return response()->json([

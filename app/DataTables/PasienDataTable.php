@@ -35,7 +35,7 @@ class PasienDataTable extends DataTable
             })
             ->addColumn('imunisasi', function ($pasien){
                 return '
-                    <button class="btn btn-outline-warning mb-1 btn-sm action-checkup" data-id="'.$pasien->id.'"><i class="ti-plus"></i> Imunisasi</button>';
+                    <button class="btn btn-outline-warning mb-1 btn-sm action-imunisasi" data-id="'.$pasien->id.'"><i class="ti-plus"></i> Imunisasi</button>';
             })
             ->addColumn('no_kk', function ($pasien){
                 return $pasien->keluarga->no_kk;
@@ -70,6 +70,7 @@ class PasienDataTable extends DataTable
                     ->setTableId('pasien-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
+                    ->responsive(true)
                     // ->dom('Bfrtip')
                     ->orderBy(1);
                     // ->buttons(
