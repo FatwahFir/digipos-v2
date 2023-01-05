@@ -15,20 +15,25 @@ class LupaPasswordController extends Controller
         return view('lupaPassword');
     }
 
-    public function cek_password(Request $request , User $user){
+    public function cek_password(Request $request){
     // $account = Auth::user();
-    $user = User::where('username', '=', $request->get('username'))->first();
-    if ($user === null) {
-        return "Tidak Ada";
+    $user = User::where('username', $request->username)->first();
+    if (!$user) {
+        $messages = "Username not found";
+        return redirect()->back()->withErrors($messages)->with('error', $messages);
     }else{
 
         $request->validate([
             'password' => 'required|confirmed|min:6|string',
         ]);
 
-        $user->update(['password' => bcrypt($request->password)]);
-
+        if($request->password != $request->password_confirmation){
+            $messages = "The password confirmation does not match";
+            return redirect()->back()->withErrors($messages)->with('error', $messages);
         }
+
+        $user->update(['password' => bcrypt($request->password)]);
+    }
         
         return redirect()->route('login')
         ->with('success','Ubah Password Berhasil');

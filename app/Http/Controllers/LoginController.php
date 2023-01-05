@@ -23,9 +23,14 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
+        }else{
+            $messages = [
+                'required' => 'Login failed',
+            ];
+            return redirect()->back()->withErrors($messages)->with('error', $messages);
         }
 
-        return back()->with('loginError', 'Login Failed!');
+        // return back()->with('loginError', 'Login Failed!');
     }
 
     public function logout(Request $request)

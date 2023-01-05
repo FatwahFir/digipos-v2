@@ -185,7 +185,7 @@ class GiziDataTable extends DataTable
             Column::make('DT_RowIndex')->searchable(false)->orderable(false)->title('No')->addClass('text-center'),
             Column::make('tgl_periksa')->addClass('text-center'),
             Column::make('puskesmas')->addClass('text-center')->orderable(true),
-            Column::make('posyandu')->addClass('text-center')->orderable(false),
+            Column::make('pasien.posyandu.nama_posyandu')->addClass('text-center')->orderable(false)->title(),
             Column::make('pasien.nama_anak')->addClass('text-center')->orderable(false),
             Column::make('jk')->addClass('text-center')->orderable(false),
             Column::make('usia')->addClass('text-center')->orderable(false),
