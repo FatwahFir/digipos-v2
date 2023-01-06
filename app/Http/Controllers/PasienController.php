@@ -23,7 +23,7 @@ class PasienController extends Controller
      */
     public function index(PasienDataTable $dataTable)
     {
-        // $this->authorize('read');
+        $this->authorize('read anak');
         return $dataTable->render('pasien.data_pasien.index');
     }
 
@@ -34,6 +34,7 @@ class PasienController extends Controller
      */
     public function create()
     {
+        $this->authorize('create anak');
         $posyandu = Posyandu::get();
         $pasien = new Pasien();
         $keluarga = new Keluarga();
@@ -84,6 +85,7 @@ class PasienController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update anak');
         $posyandu = Posyandu::get();
         $desa = Desa::get();
         $pasien = Pasien::with('keluarga')->findOrFail($id);
@@ -140,6 +142,7 @@ class PasienController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('delete anak'); 
         Pasien::where('id', $id)->delete();
         return response()->json([
             'status' => 'Sukses',

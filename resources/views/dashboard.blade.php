@@ -7,8 +7,8 @@
         <div class="title">
             Dashboard
         </div>
-        @if(auth()->user()->hasRole('admin puskesmas'))
         <div class="row">
+        @if(auth()->user()->hasRole('admin puskesmas'))
             <div class="col-lg-6 col-md-6 col-sm-6 col-xl-4">
                 <div class="card overflow-hidden">
                     <div class="card-body">
@@ -202,6 +202,7 @@
             </div>
         </div>
         @endif
+        </div>
     </div>
     @endsection
     

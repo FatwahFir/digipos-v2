@@ -164,11 +164,11 @@
                                 <i class="ti-user edit"></i> Profile
                             </div>
                         </a>
-                        <a href="#">
+                        {{-- <a href="#">
                             <div class="description">
                                 <i class="ti-settings"></i> Setting
                             </div>
-                        </a>
+                        </a> --}}
                         <form method="POST" action="">
                             @csrf
                             <a href="{{ route('logout') }}">

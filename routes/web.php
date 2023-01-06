@@ -33,6 +33,7 @@ use App\Http\Controllers\LupaPasswordController;
 Route::get('/lupa_password', [LupaPasswordController::class, 'index'])->name('lupa_password');
 Route::post('/lupa_password', [LupaPasswordController::class, 'cek_password'])->name('check_lupa_password');
 Route::get('/login', [LoginController::class, 'index'])->name('loginform')->middleware('guest');
+Route::get('/', [LoginController::class, 'index'])->name('loginIndex')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
