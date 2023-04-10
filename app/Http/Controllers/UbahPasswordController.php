@@ -78,6 +78,7 @@ class UbahPasswordController extends Controller
         # Validation
         $request->validate([
             'new_password' => 'required|confirmed|min:6|string',
+            'new_password_confirmation' => 'required|confirmed|min:6|string',
         ]);
 
         $auth = Auth::user();

@@ -42,8 +42,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="confirmNewPasswordInput" class="form-label">Confirm New Password</label>
-                                        <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
+                                        <input name="new_password_confirmation" type="password" class="form-control @error('new_password_confirmation') is-invalid @enderror" id="confirmNewPasswordInput"
                                             placeholder="Confirm New Password">
+                                        @error('new_password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
         
                                     <div class="text mt-3">
@@ -77,7 +80,7 @@
     <script>
 
         $('.submit').on('click', function(){
-            var oldPassword = $('#oldPasswordInput').val();
+            
             var newPassword = $('#newPasswordInput').val();
             var confirmNewPassword = $('#confirmNewPasswordInput').val();
 
@@ -91,7 +94,7 @@
                     confirmButtonText: "Ok",
             })
 
-        }else if(confirmNewPassword == "" && newPassword == "" && oldPassword == ""){
+        }else if(confirmNewPassword == "" && newPassword == ""){
             swal({
                 title: "All fields are required!",
                 text: "Please enter all fields",

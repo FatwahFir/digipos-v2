@@ -232,7 +232,7 @@
                                     <div class="card-body text-center">
                                         <div>
                                             <h2>Change Password</h2>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                            <p>You can change your password here if you forgot your password </p>
                                             {{-- <button class="btn btn-primary active mt-3" type="button">Register Now!</button> --}}
                                         </div>
                                     </div>
